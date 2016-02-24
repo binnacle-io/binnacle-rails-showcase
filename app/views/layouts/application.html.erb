@@ -19,13 +19,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Binnacle Showcase</a>
+        <%= link_to('Binnacle Showcase', home_path, class: 'navbar-brand') %>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#exceptions">Logging</a></li>
-          <li><a href="#contact">Exceptions</a></li>
+          <li class="<%= 'active' if current_page?(home_path) %>"><%= link_to('Home', home_path) %></li>
+          <li class="<%= 'active' if current_page?(logging_path) %>"><%= link_to('Logging', logging_path) %></li>
+          <li class="<%= 'active' if current_page?(exceptions_path) %>"><%= link_to('Exceptions', exceptions_path) %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Widgets <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -34,6 +34,19 @@
               <li><a href="#">Notifications</a></li>
             </ul>
           </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <%- if user_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to('Sign Out', destroy_user_session_path, method: :delete) %></li>
+            </ul>
+          </li>
+          <% else %>
+          <li><%= link_to('Sign In', new_user_session_path) %></li>
+          <li><%= link_to('Sign Up', new_user_registration_path) %></li>
+          <% end %>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
