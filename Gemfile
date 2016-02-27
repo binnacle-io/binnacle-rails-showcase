@@ -29,7 +29,7 @@ gem 'font-awesome-sass', '~> 4.5.0'
 # binnacle ruby driver
 gem 'binnacle', '~> 0.4.0'
 
-gem 'binnacle_chat', path: '/Users/bsb/Code/products/binnacle-io/binnacle_chat'
+gem 'binnacle_chat', '~> 0.0.1'
 
 # client-side assets
 source 'https://rails-assets.org' do
