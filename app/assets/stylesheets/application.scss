@@ -12,8 +12,14 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery-ui
+ *= require binnacle_chat
+ *= require font-awesome
  *= require bootstrap_and_overrides
  */
 
- @import "bootstrap-sprockets";
- @import "bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "font-awesome-sprockets";
+@import "font-awesome";

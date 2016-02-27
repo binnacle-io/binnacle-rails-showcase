@@ -7,6 +7,7 @@
   <title>Binnacle Sample App</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
+  <%= yield :binnacle_chat %>
 </head>
 <body role="document" class="<%= "#{params[:controller]}_#{params[:action]}" %>" data-sid="<%= session.id %>">
   <!-- Fixed navbar -->
@@ -31,7 +32,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Widgets <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">AR Cud</a></li>
-              <li><a href="#">Chat Widget</a></li>
+              <li><a href="#"><%= link_to('Chat Widget', chat_path) %></a></li>
               <li><a href="#">Notifications</a></li>
             </ul>
           </li>

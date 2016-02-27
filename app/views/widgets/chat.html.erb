@@ -1,0 +1,11 @@
+<div class="page-header">
+  <h1>Chat Widget</h1>
+</div>
+
+<div class="bs-callout bs-callout-warning" id="callout-tables-context-accessibility">
+  <h4>Binnacle Powered Chat</h4>
+  <p>The Binncale Chat Widget for Rails is a simple plugin that provides a Rails View Helper
+which gives you an floating chat window powered by Binnacle.</p>
+</div>
+
+<%= chat(identity: current_user.email, email: current_user.email, display_name: current_user.name) %>

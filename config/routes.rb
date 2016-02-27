@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   get 'logging/index', as: :logging
   post 'logging/info'
   post 'logging/debug'
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
   get 'exceptions/index', as: :exceptions
   post 'exceptions/trigger', as: :trigger_exception
 
-  devise_for :users
+  get 'widgets/chat', as: :chat
 
   root to: "home#index", as: :home
 

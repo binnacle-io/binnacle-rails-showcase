@@ -17,8 +17,6 @@ gem 'puma'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -26,9 +24,20 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'font-awesome-sass', '~> 4.5.0'
 
 # binnacle ruby driver
 gem 'binnacle', '~> 0.4.0'
+
+gem 'binnacle_chat', path: '/Users/bsb/Code/products/binnacle-io/binnacle_chat'
+
+# client-side assets
+source 'https://rails-assets.org' do
+  gem 'rails-assets-binnacle', '~> 0.1.4'
+  gem 'rails-assets-jquery-ui', '~> 1.11.3'
+  gem 'rails-assets-jspanel', '~> 2.6.1'
+  gem 'rails-assets-gravatarjs', '~> 1.0.0'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,6 +54,8 @@ group :development do
   gem 'spring'
 
   gem 'foreman'
+
+  gem 'better_errors'
 end
 
 group :production do
