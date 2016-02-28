@@ -26,10 +26,12 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-sass', '~> 4.5.0'
 
+gem 'js-routes'
+
 # binnacle ruby driver
 gem 'binnacle', '~> 0.4.0'
-
 gem 'binnacle_chat', '~> 0.0.1'
+gem 'binnacle_ar', '~> 0.0.1'
 
 # client-side assets
 source 'https://rails-assets.org' do

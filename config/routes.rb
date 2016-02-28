@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   post 'exceptions/trigger', as: :trigger_exception
 
   get 'widgets/chat', as: :chat
+  get 'widgets/arcud', as: :arcud
+
+  resources :articles
 
   root to: "home#index", as: :home
 

@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1>ActiveRecord CUD</h1>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Active Record CUD (Create-Update-Delete) interceptor for Binnacle</h4>
+  <p>Adds ActiveRecord callbacks for create, update and delete that will signal Binnacle
+with the state of the object (to_json)</p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+class Article < ActiveRecord::Base
+  binnacle_signal on: [:create, :update, :destroy]
+end
+      </code>
+    </pre>
+  </figure>
+</div>
+
+<%= render 'articles/articles' %>
