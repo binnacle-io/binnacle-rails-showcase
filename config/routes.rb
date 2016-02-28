@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get 'widgets/chat', as: :chat
   get 'widgets/arcud', as: :arcud
+  #get 'widgets/notifications', as: :notifications
 
   resources :articles
 

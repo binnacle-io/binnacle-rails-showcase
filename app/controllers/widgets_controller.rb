@@ -7,4 +7,6 @@ class WidgetsController < ApplicationController
   def arcud
     @articles = Article.all
   end
+
+  def notifications; end
 end
