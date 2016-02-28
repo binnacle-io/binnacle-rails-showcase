@@ -58,7 +58,7 @@ GEM
     binnacle_ar (0.0.1)
       binnacle (~> 0.4, >= 0.4.0)
       rails (~> 4.2)
-    binnacle_chat (0.0.1)
+    binnacle_chat (0.0.2)
       coffee-rails (~> 4.1, >= 4.1.0)
       gon (~> 6.0, >= 6.0.1)
       rails (~> 4.2)
@@ -234,7 +234,7 @@ DEPENDENCIES
   better_errors
   binnacle (~> 0.4.0)
   binnacle_ar (~> 0.0.1)
-  binnacle_chat (~> 0.0.1)
+  binnacle_chat (~> 0.0.2)
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.1.0)
