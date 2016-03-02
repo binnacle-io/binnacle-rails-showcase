@@ -1,5 +1,15 @@
 {
-  "name": "Ruby Sample",
-  "description": "A barebones Ruby on Rails app",
-  "repository": "https://github.com/binnacle-io/binnacle-rails-deploy-to-heroku"
+  "name": "Binnacle Rails Showcase",
+  "description": "Binnacle.io Examples for Ruby on Rails.",
+  "keywords": [
+    "logging",
+    "websockets",
+    "realtime"
+  ],
+  "website": "https://binnacle.io/",
+  "repository": "https://github.com/binnacle-io/binnacle-rails-showcase",
+  "logo": "https://binnacle.io/assets/logo-small-black.png",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  }
 }
