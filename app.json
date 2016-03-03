@@ -11,5 +11,39 @@
   "logo": "https://binnacle.io/assets/logo-small-black.png",
   "scripts": {
     "postdeploy": "bundle exec rake db:migrate"
+  },
+  "env": {
+    "BINNACLE_ENDPOINT": {
+      "description": "One or more endpoints to communicate with the Binnacle service (api1.binnacle.io)",
+      "value": "api1.binnacle.io,api3.binnacle.io"
+    },
+    "BINNACLE_APP": {
+      "description": "Your App's Binnacle ID.",
+      "value": ""
+    },
+    "BINNACLE_API_KEY": {
+      "description": "The API key for an App publisher.",
+      "value": ""
+    },
+    "BINNACLE_API_SECRET": {
+      "description": "The API secret for an App publisher.",
+      "value": ""
+    },
+    "BINNACLE_APP_LOG_CTX": {
+      "description": "The Binnacle ID of the Rails Log Context.",
+      "value": ""
+    },
+    "BINNACLE_APP_ERR_CTX": {
+      "description": "The Binnacle ID of the Rails Error/Exceptions Context.",
+      "value": ""
+    },
+    "BINNACLE_CHAT_CTX": {
+      "description": "A context to be used to demo the Chat Widget.",
+      "value": ""
+    },
+    "BINNACLE_AR_CTX": {
+      "description": "A context to use to demo the ActiveRecord CUD Widget.",
+      "value": ""
+    }
   }
 }
