@@ -28,8 +28,6 @@ gem 'font-awesome-sass', '~> 4.5.0'
 
 gem 'js-routes'
 
-gem 'httplog'
-
 # binnacle ruby driver
 gem 'binnacle', '~> 0.4.1'
 gem 'binnacle_chat', '~> 0.0.2'
@@ -42,6 +40,9 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jspanel', '~> 2.6.1'
   gem 'rails-assets-gravatarjs', '~> 1.0.0'
 end
+
+# log outgoing http requests
+gem 'httplog'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
