@@ -1,0 +1,9 @@
+<div class="page-header">
+  <h1>Exceptions</h1>
+</div>
+<div class="well">
+  <p>Binnacle can trap and analyze all unhandled exceptions thrown by your Rails application.</p>
+  <p>Use the button below to trigger an exception, you should be able to see the exception in <b>binnacle.io</b></p>
+</div>
+
+<%= button_to "Trigger", trigger_exception_path, remote: true, class: "btn btn-default" %>

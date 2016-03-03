@@ -1,0 +1,97 @@
+<div class="page-header">
+  <h1>Logging</h1>
+</div>
+
+<p>Binnacle can be configured to relay logging in either verbose mode or concise mode.</p>
+<p>By default we relay logging in concise mode which includes all incoming and outgoing requests in your App.</p>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Basic Logging</h4>
+  <p>The binnacle logger can be used just like any other Ruby Logger. You can access it via the class method logger in the Binnacle module:</p>
+  <div class="zero-clipboard"><%= button_to "Try it!", logging_info_path, remote: true, class: "btn-clipboard" %></div>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+Binnacle.logger.info("This is an info message")
+      </code>
+    </pre>
+  </figure>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Log Levels</h4>
+  <p>Set the logger's level with <code class="language-ruby" data-lang="ruby">Binnacle.logger.level = Logger::DEBUG</code>  </p>
+  <div class="zero-clipboard"><%= button_to "Try it!", logging_debug_path, remote: true, class: "btn-clipboard" %></div>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+Binnacle.logger.level = Logger::DEBUG
+Binnacle.logger.debug("This is an debug message")
+      </code>
+    </pre>
+  </figure>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Using Progname</h4>
+  <p>Use the progname attribute to change the name of the event being logged.</p>
+  <p>By default Binnacle uses <code>log</code> as the event name.</p>
+  <p>Passing a String will override the event name.</p>
+  <div class="zero-clipboard"><%= button_to "Try it!", logging_with_procname_path, remote: true, class: "btn-clipboard" %></div>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+Binnacle.logger.level = Logger::ERROR
+Binnacle.logger.error('comm_error') { "Can't reach the service endpoint!" }
+      </code>
+    </pre>
+  </figure>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Using Progname Hash</h4>
+  <p>Passing a Hash as the progname parameter you can then specify
+   a Binnacle's signal remaining parameters (session_id, event_name, client_id, tags)</p>
+  <div class="zero-clipboard"><%= button_to "Try it!", logging_with_procname_hash_path, remote: true, class: "btn-clipboard" %></div>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+Binnacle.logger.info(context_id: '<%= ENV['BINNACLE_APP_LOG_CTX'] %>', session_id: '8675309', event_name: 'failed_transfer') {
+  'transfer failed, bad RTN'
+}
+      </code>
+    </pre>
+  </figure>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Tagged Logging</h4>
+  <p>Something, something about Tag Logging</p>
+  <div class="zero-clipboard"><%= button_to "Try it!", logging_tagged_path, remote: true, class: "btn-clipboard" %></div>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+Binnacle.logger.tagged("cart") do
+  Binnacle.logger.info "Adding Item 123"
+  Binnacle.logger.info "Adding Item 234"
+end
+      </code>
+    </pre>
+  </figure>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Multiple Tags</h4>
+  <p>Something, something about Tag Logging</p>
+  <div class="zero-clipboard"><%= button_to "Try it!", logging_multi_tagged_path, remote: true, class: "btn-clipboard" %></div>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+Binnacle.logger.tagged("account", "payments") do
+  Binnacle.logger.info 'Added new credit card of type VISA'
+  Binnacle.logger.info 'Remove Paypal account'
+end
+      </code>
+    </pre>
+  </figure>
+</div>
