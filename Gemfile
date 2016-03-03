@@ -29,7 +29,7 @@ gem 'font-awesome-sass', '~> 4.5.0'
 gem 'js-routes'
 
 # binnacle ruby driver
-gem 'binnacle', '~> 0.4.0'
+gem 'binnacle', '~> 0.4.1'
 gem 'binnacle_chat', '~> 0.0.2'
 gem 'binnacle_ar', '~> 0.0.1'
 
