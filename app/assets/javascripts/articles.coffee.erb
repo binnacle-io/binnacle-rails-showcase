@@ -43,7 +43,6 @@ $(document).ready ->
           removeArticle(article)
 
     client = new (Binnacle.Client)(
-      appId: '<%= ENV["BINNACLE_APP"] %>'
       contextId: '<%= ENV["BINNACLE_AR_CTX"] %>'
       endPoint: '<%= Binnacle.configuration.url %>'
       apiKey: '<%= ENV["BINNACLE_API_KEY"] %>'
