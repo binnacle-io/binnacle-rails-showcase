@@ -47,7 +47,8 @@ $(document).ready ->
       endPoint: '<%= Binnacle.configuration.url %>'
       apiKey: '<%= ENV["BINNACLE_API_KEY"] %>'
       apiSecret: '<%= ENV["BINNACLE_API_SECRET"] %>'
-      onSignal: binnacleEventHandler)
+      onSignal: binnacleEventHandler
+    )
 
     client.subscribe()
 
