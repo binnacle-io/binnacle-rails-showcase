@@ -58,7 +58,7 @@ GEM
     binnacle_ar (0.0.1)
       binnacle (~> 0.4, >= 0.4.0)
       rails (~> 4.2)
-    binnacle_chat (0.0.6)
+    binnacle_chat (0.0.7)
       coffee-rails (~> 4.1, >= 4.1.0)
       gon (~> 6.0, >= 6.0.1)
       rails (~> 4.2)
@@ -155,7 +155,7 @@ GEM
       sprockets-rails
     rails-assets-atmosphere (2.2.12)
     rails-assets-base64 (0.3.0)
-    rails-assets-binnacle (0.1.6)
+    rails-assets-binnacle (0.1.7)
       rails-assets-atmosphere (= 2.2.12)
       rails-assets-base64 (= 0.3.0)
       rails-assets-moment (= 2.10.6)
@@ -237,7 +237,7 @@ DEPENDENCIES
   better_errors
   binnacle (~> 0.4.1)
   binnacle_ar (~> 0.0.1)
-  binnacle_chat (~> 0.0.6)
+  binnacle_chat (~> 0.0.7)
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.1.0)
@@ -252,7 +252,7 @@ DEPENDENCIES
   pg
   puma
   rails (= 4.2.4)
-  rails-assets-binnacle (~> 0.1.6)!
+  rails-assets-binnacle (~> 0.1.7)!
   rails-assets-gravatarjs (~> 1.0.0)!
   rails-assets-jquery-ui (~> 1.11.3)!
   rails-assets-jspanel (~> 2.6.1)!

@@ -30,12 +30,12 @@ gem 'js-routes'
 
 # binnacle ruby driver
 gem 'binnacle', '~> 0.4.1'
-gem 'binnacle_chat', '~> 0.0.6'
+gem 'binnacle_chat', '~> 0.0.7'
 gem 'binnacle_ar', '~> 0.0.1'
 
 # client-side assets
 source 'https://rails-assets.org' do
-  gem 'rails-assets-binnacle', '~> 0.1.6'
+  gem 'rails-assets-binnacle', '~> 0.1.7'
   gem 'rails-assets-jquery-ui', '~> 1.11.3'
   gem 'rails-assets-jspanel', '~> 2.6.1'
   gem 'rails-assets-gravatarjs', '~> 1.0.0'
