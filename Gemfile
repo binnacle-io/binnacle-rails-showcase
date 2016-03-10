@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -27,6 +27,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-sass', '~> 4.5.0'
 
 gem 'js-routes'
+
+gem 'high_voltage', '~> 2.4.0'
+gem 'okcomputer', '~> 1.7.1'
 
 # binnacle ruby driver
 gem 'binnacle', '~> 0.4.1'
