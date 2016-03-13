@@ -44,6 +44,22 @@
     "BINNACLE_AR_CTX": {
       "description": "A context to use to demo the ActiveRecord CUD Widget.",
       "value": ""
+    },
+    "BINNACLE_ACCT_ID": {
+      "description": "The Account Id.",
+      "value": ""
+    },
+    "BINNACLE_APP_ID": {
+      "description": "The App Id.",
+      "value": ""
+    },
+    "BINNACLE_APP_LOG_CTX_ID": {
+      "description": "Logging Context Id.",
+      "value": ""
+    },
+    "BINNACLE_APP_ERR_CTX_ID": {
+      "description": "The Error Context Id.",
+      "value": ""
     }
   }
 }
