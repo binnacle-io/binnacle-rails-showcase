@@ -5,7 +5,7 @@
 <div class="bs-callout bs-callout-info">
   <h4>Binnacle Provides an Uptime Service</h4>
   <p>This showcase app uses the <a href="https://github.com/sportngin/okcomputer">okcomputer gem</a> to provide a <%= link_to 'healthcheck endpoint', okcomputer_url %></p>
-  <p>Use the full URL of the deployed app when configuring the uptime service:</p>
+  <p>Use the full URL of the deployed app when configuring the uptime service in binnacle:</p>
   <figure class="highlight">
     <pre>
       <code>
@@ -13,4 +13,26 @@
       </code>
     </pre>
   </figure>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Enabling the Uptime Service</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+      To enable Binnacle's Uptime Service you can edit the Application (<strong><%= ENV['BINNACLE_APP'] %></strong>) go
+      to the 'App Edit' screen and check the 'Enable Uptime Service' box, then enter the Uptime URL and the interval, add
+      one or more notification recipients (email, SMS, slack, etc) and save your changes.
+      Binnacle will start monitoring your Application uptime! (first check will happen after the uptime interval has elapsed.)
+    </p>
+
+    <p>
+    <%= image_tag('enabling_uptime.png', class: 'img-responsive dropshadow') %>
+    </p>
+
+    <%= link_to(edit_app, class: 'btn btn-primary', target: 'blank') do %>
+      <i class="fa fa-external-link"></i> Edit App
+    <% end %>
+  </div>
 </div>

@@ -1,0 +1,98 @@
+<div class="page-header">
+  <h1>Configuration</h1>
+</div>
+
+
+
+<div class="bs-callout bs-callout-info">
+  <h4>Gemfile</h4>
+  <p>
+    In the Gemfile you'll need the <strong><a href="https://github.com/binnacle-io/binnacle-ruby" target="blank">binnacle</a></strong> Gem along with
+    the gems for the <strong><a href="https://github.com/binnacle-io/binnacle_chat" target="blank">binnacle_chat</a></strong> and
+    <strong><a href="https://github.com/binnacle-io/binnacle_ar" target="blank">binnacle_ar</a></strong> widgets.
+    We pulled the binnacle JS library from <strong><a href="http://bower.io/" target="blank">Bower</a></strong> via <strong><a href="https://rails-assets.org/" target="blank">Rails Assets</a></strong> (although a version will be directly available on <a href="https://rubygems.org/" target="blank">Rubygems</a>).
+  </p>
+  <p>
+    The binnacle_chat widget requires the <strong><a href="https://github.com/components/jqueryui" target="blank">JQuery UI</a></strong>,
+    <strong><a href="http://jspanel.de/" target="blank">JSPanel</a></strong> and
+    <strong><a href="https://github.com/mazondo/gravatarjs" target="blank">Gravatar</a></strong> JS libraries which we also pull from Rails Assets.
+  </p>
+
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+# binnacle ruby driver
+gem 'binnacle', '~> 0.4.1'
+gem 'binnacle_chat', '~> 0.0.7'
+gem 'binnacle_ar', '~> 0.0.1'
+
+# client-side assets
+source 'https://rails-assets.org' do
+  gem 'rails-assets-binnacle', '~> 0.1.7'
+  gem 'rails-assets-jquery-ui', '~> 1.11.3'
+  gem 'rails-assets-jspanel', '~> 2.6.1'
+  gem 'rails-assets-gravatarjs', '~> 1.0.0'
+end
+      </code>
+    </pre>
+  </figure>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Binnacle Environment Variables</h4>
+  <p>
+    If you deployed the application using the <img src="https://www.herokucdn.com/deploy/button.svg"/> button.
+    The required environment variables are already configured on your behalf.
+  </p>
+  <p>
+    If you want to run the application locally you would need to configure the values below.
+    We recommend using a .env file via <strong><a href="https://github.com/bkeepers/dotenv" target="blank">dotenv-rails</a></strong> (already in the Gemfile).
+  </p>
+  <p>
+    The values for <code>BINNACLE_CHAT_CTX</code> and <code>BINNACLE_AR_CTX</code> can be set to the same
+    context id or you can create extra contexts for each of the widgets.
+  </p>
+  <p>
+    The values for <code>BINNACLE_ACCT_ID</code>, <code>BINNACLE_APP_ID</code>, <code>BINNACLE_APP_LOG_CTX_ID</code> and <code>BINNACLE_APP_ERR_CTX_ID</code>
+    are used for convenience to generate links to navigate back to binnacle.io. Their values are the integer numbers you'll see
+    at the end URLs in binnacle.io such as /accounts/8/apps/16 (where 8 is BINNACLE_ACCT_ID and 16 is BINNACLE_APP_ID).
+    They are not critical for the functioning of the Showcase app.
+  </p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+BINNACLE_ENDPOINT=api1.binnacle-api.io # pick from api1..api6
+BINNACLE_APP=...
+BINNACLE_API_KEY=...
+BINNACLE_API_SECRET=...
+BINNACLE_APP_LOG_CTX=...
+BINNACLE_APP_ERR_CTX=...
+BINNACLE_CHAT_CTX=...
+BINNACLE_AR_CTX=...
+BINNACLE_ACCT_ID=...
+BINNACLE_APP_ID=...
+BINNACLE_APP_LOG_CTX_ID=...
+BINNACLE_APP_ERR_CTX_ID=...
+      </code>
+    </pre>
+  </figure>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Binnacle Initializer</h4>
+  <p>
+    The Binnacle Initializer can be created using the Rails Generator (<code>rails generate binnacle</code>). The generator creates a
+    file under config/initializers/binnacle.rb. Although you can configure all aspects of the binnacle client via this initializer we
+    recommend that you configure any credentials and account/app/context ids via Environment variables
+  </p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+Binnacle.configure do |config|
+  config.intercept_rails_logging = true
+  config.report_exceptions = true
+end
+      </code>
+    </pre>
+  </figure>
+</div>

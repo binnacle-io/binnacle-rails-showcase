@@ -7,9 +7,16 @@
   <title>Binnacle Sample App</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
+
+  <!-- google font libraries -->
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Dosis:300,400,500,600,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
+
   <%= yield :binnacle_chat %>
 </head>
-<body role="document" class="<%= "#{params[:controller]}_#{params[:action]}" %>">
+<body role="document" class="binnacle <%= "#{params[:controller]}_#{params[:action]}" %>">
   <!-- Fixed navbar -->
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -26,9 +33,10 @@
         <ul class="nav navbar-nav">
           <li class="<%= 'active' if current_page?(home_path) %>"><%= link_to('Home', home_path) %></li>
           <%- if user_signed_in? %>
+          <li class="<%= 'active' if current_page?(page_path('configuration')) %>"><%= link_to 'Configuration', page_path('configuration') %></li>
           <li class="<%= 'active' if current_page?(logging_path) %>"><%= link_to('Logging', logging_path) %></li>
           <li class="<%= 'active' if current_page?(exceptions_path) %>"><%= link_to('Exceptions', exceptions_path) %></li>
-          <li class="<%= 'active' if current_page?(page_path('uptime')) %>"><%= link_to 'Uptime', page_path('uptime') %></li> 
+          <li class="<%= 'active' if current_page?(page_path('uptime')) %>"><%= link_to 'Uptime', page_path('uptime') %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Widgets <span class="caret"></span></a>
             <ul class="dropdown-menu">

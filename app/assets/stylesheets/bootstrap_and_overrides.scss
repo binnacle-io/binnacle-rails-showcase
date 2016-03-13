@@ -2,3 +2,44 @@ body {
   padding-top: 70px;
   padding-bottom: 30px;
 }
+
+.btn-clipboard:hover {
+  color: #fff;
+  background-color: #563d7c;
+  border-color: #563d7c;
+}
+
+.btn-clipboard:focus {
+  outline:0;
+}
+
+$open-sans-font: 'Open Sans', sans-serif;
+$roboto-font: 'Roboto Condensed', sans-serif;
+.page-header, .jumbotron {
+  h1 {
+    font-family: $roboto-font;
+    text-transform: uppercase;
+  }
+}
+
+body.binnacle {
+	font-family: $open-sans-font;
+	-webkit-font-smoothing: antialiased;
+}
+
+.dropshadow {
+  box-shadow: 5px 5px 3px #888888;
+}
+
+.logo-img {
+  height: 30px;
+  display: inline;
+  margin-top: -5px;
+}
+
+.navbar-brand {
+  background: asset-url("logo-small.png") left / contain no-repeat;
+  height: 30px;
+  text-align: left;
+  text-indent: 40px;
+}
