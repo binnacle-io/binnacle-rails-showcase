@@ -1,0 +1,62 @@
+<div class="page-header">
+  <h1>Exceptions</h1>
+</div>
+
+<p>
+  <p>Binnacle can trap and report all unhandled exceptions thrown by your Rails application.</p>
+</p>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Tail the Log</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+    You can view the error context (<strong><%= ENV['BINNACLE_APP_LOG_CTX'] %></strong>) where exceptions are summarized.
+    Binnacle will also automatically alert you when the exception first occurs and then subsequently on
+    each occurrence that is a multiple of ten (10x, 100x, ...)
+    </p>
+
+    <%= link_to(error_context_log, class: 'btn btn-primary', target: 'blank') do %>
+      <i class="fa fa-external-link"></i> Open Errors View
+    <% end %>
+  </div>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Exception Trapping</h4>
+  <p>The code below triggers one of ten different exceptions, use the 'Try it!' button to see them reported on Binnacle:</p>
+  <div class="zero-clipboard"><%= button_to "Try it!", trigger_exception_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %></div>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+def trigger
+  random_choice = 1 + rand(10)
+  case random_choice
+  when 1
+    1 / 0
+  when 2
+    [1, 2, 3].first("two")
+  when 3
+    eval("1+1=2")
+  when 4
+    "hello".to_ary
+  when 5
+    [1, 2, 3].first(4, 5)
+  when 6
+    Float::INFINITY.to_r
+  when 7
+    puts foo
+  when 8
+    Regexp.new("?")
+  when 9
+    [1, 2, 3].drop(1 << 100)
+  when 10
+    h = {}
+    h.fetch("baz") #=> KeyError: key not found: "baz"
+  end
+end
+      </code>
+    </pre>
+  </figure>
+</div>

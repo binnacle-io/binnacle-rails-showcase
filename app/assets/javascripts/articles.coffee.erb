@@ -1,0 +1,58 @@
+$(document).ready ->
+  if $('.widgets_arcud').length > 0
+    addArticle = (article) ->
+      if $("#article-#{article['id']}").length is 0
+        $tr = """
+        <tr id="article-#{article['id']}">
+          <td>#{article['title']}</td>
+          <td>#{article['text']}</td>
+          <td><a href="#{Routes.edit_article_path(article)}" data-remote="true">Edit</a></td>
+          <td><a data-confirm="Are you sure?" data-remote="true" rel="nofollow" data-method="delete" href="#{Routes.article_path(article)}">Destroy</a></td>
+        </tr>
+        """
+
+        $('#articles').append $tr
+        $("#article-#{article['id']}").effect 'highlight', {}, 2000
+
+    updateArticle = (article) ->
+      if $("#article-#{article['id']}").length isnt 0
+        $tr = """
+        <tr id="article-#{article['id']}">
+          <td>#{article['title']}</td>
+          <td>#{article['text']}</td>
+          <td><a href="#{Routes.edit_article_path(article)}">Edit</a></td>
+          <td><a data-confirm="Are you sure?" data-remote="true" rel="nofollow" data-method="delete" href="#{Routes.article_path(article)}">Destroy</a></td>
+        </tr>
+        """
+
+        $("#article-#{article['id']}").replaceWith($tr)
+        $("#article-#{article['id']}").effect 'highlight', {}, 2000
+
+    removeArticle = (article) ->
+      $("#article-#{article['id']}").slideUp("normal", -> $(this).remove())
+
+    binnacleEventHandler = (event) ->
+      article = JSON.parse(event.json)
+
+      switch event.eventName
+        when 'create'
+          addArticle(article)
+        when 'update'
+          updateArticle(article)
+        when 'destroy'
+          removeArticle(article)
+
+    client = new (Binnacle.Client)(
+      contextId: '<%= ENV["BINNACLE_AR_CTX"] %>'
+      endPoint: '<%= Binnacle.configuration.url %>'
+      apiKey: '<%= ENV["BINNACLE_API_KEY"] %>'
+      apiSecret: '<%= ENV["BINNACLE_API_SECRET"] %>'
+      onSignal: binnacleEventHandler
+    )
+
+    client.subscribe()
+
+    $.Article = {
+      addArticle: addArticle
+      updateArticle: updateArticle
+    }

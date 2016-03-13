@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1>ActiveRecord CUD</h1>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4><a href="https://github.com/binnacle-io/binnacle_ar" target="blank">Active Record CUD</a> (Create-Update-Delete) interceptor for Binnacle</h4>
+  <p>Adds ActiveRecord callbacks for create, update and delete that will signal Binnacle
+with the state of the object (to_json). Use in conjunction with the <a href="https://github.com/binnacle-io/binnacle-js" target="blank">binnacle-js library</a>
+  create a rich near-realtime experience for your users.</p>
+  <p>To enabled signals from an ActiveRecord model simply use the the <strong>binnacle_signal_on</strong> class method:
+</tfoot></p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">
+class Article < ActiveRecord::Base
+  binnacle_signal on: [:create, :update, :destroy]
+end
+      </code>
+    </pre>
+  </figure>
+
+  <p>
+    To view the Coffeescript client-side implementation of this demo see the source
+    file <a href="https://github.com/binnacle-io/binnacle-rails-showcase/blob/master/app/assets/javascripts/articles.coffee.erb" target="blank">articles.coffee.erb</a>
+  </p>
+</div>
+
+<%= render 'articles/articles' %>
