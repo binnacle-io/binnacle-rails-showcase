@@ -12,11 +12,7 @@
   </div>
   <div class="panel-body">
     <p>
-<<<<<<< HEAD
     You can view the error context (<strong><%= ENV['BINNACLE_APP_ERR_CTX'] %></strong>) where exceptions are summarized.
-=======
-    You can view the error context (<strong><%= ENV['BINNACLE_APP_LOG_CTX'] %></strong>) where exceptions are summarized.
->>>>>>> bafc605ffb378a95bfaa4ced4fb86f788ace4003
     Binnacle will also automatically alert you when the exception first occurs and then subsequently on
     each occurrence that is a multiple of ten (10x, 100x, ...)
     </p>
@@ -30,11 +26,7 @@
 <div class="bs-callout bs-callout-info">
   <h4>Exception Trapping</h4>
   <p>The code below triggers one of ten different exceptions, use the 'Try it!' button to see them reported on Binnacle:</p>
-<<<<<<< HEAD
   <div class="zero-clipboard"><%= button_to "Try it!", trigger_exception_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger an exception and watch them reported on binnacle.io"} %></div>
-=======
-  <div class="zero-clipboard"><%= button_to "Try it!", trigger_exception_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %></div>
->>>>>>> bafc605ffb378a95bfaa4ced4fb86f788ace4003
   <figure class="highlight">
     <pre>
       <code class="language-ruby" data-lang="ruby">
