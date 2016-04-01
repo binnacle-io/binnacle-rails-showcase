@@ -15,6 +15,7 @@
   <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
 
   <%= yield :binnacle_chat %>
+  <%= javascript_include_tag 'highcharts', 'chartkick' %>
 </head>
 <body role="document" class="binnacle <%= "#{params[:controller]}_#{params[:action]}" %>">
   <!-- Fixed navbar -->
@@ -37,6 +38,7 @@
           <li class="<%= 'active' if current_page?(logging_path) %>"><%= link_to('Logging', logging_path) %></li>
           <li class="<%= 'active' if current_page?(exceptions_path) %>"><%= link_to('Exceptions', exceptions_path) %></li>
           <li class="<%= 'active' if current_page?(page_path('uptime')) %>"><%= link_to 'Uptime', page_path('uptime') %></li>
+          <li class="<%= 'active' if current_page?(candidates_path) %>"><%= link_to 'Realtime', candidates_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Widgets <span class="caret"></span></a>
             <ul class="dropdown-menu">

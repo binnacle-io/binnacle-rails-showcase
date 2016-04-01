@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   #get 'widgets/notifications', as: :notifications
 
   resources :articles
+  resources :candidates, only: [:index] do
+    member do
+      put :vote
+    end
+  end
 
   root to: "home#index", as: :home
 

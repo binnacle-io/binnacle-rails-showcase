@@ -37,6 +37,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts_as_votable (0.10.0)
     addressable (2.4.0)
     arel (6.0.3)
     autoprefixer-rails (6.3.3.1)
@@ -68,6 +69,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (8.2.2)
+    chartkick (1.4.2)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -161,7 +163,10 @@ GEM
       rails-assets-atmosphere (= 2.2.12)
       rails-assets-base64 (= 0.3.0)
       rails-assets-moment (= 2.10.6)
+    rails-assets-bootstrap (3.3.6)
+      rails-assets-jquery (>= 1.9.1, < 3)
     rails-assets-gravatarjs (1.0.0)
+    rails-assets-highcharts (4.2.3)
     rails-assets-jquery (2.2.1)
     rails-assets-jquery-ui (1.11.4)
       rails-assets-jquery (>= 1.6)
@@ -169,6 +174,9 @@ GEM
       rails-assets-jquery (>= 1.9.1)
       rails-assets-jquery-ui (>= 1.9)
     rails-assets-moment (2.10.6)
+    rails-assets-remarkable-bootstrap-notify (3.1.3)
+      rails-assets-bootstrap (>= 2.0.0)
+      rails-assets-jquery (>= 1.10.2)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -236,12 +244,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_votable (~> 0.10.0)
   better_errors
   binnacle (~> 0.4.1)
   binnacle_ar (~> 0.0.1)
   binnacle_chat (~> 0.0.7)
   bootstrap-sass (~> 3.3.6)
   byebug
+  chartkick (~> 1.4, >= 1.4.1)
   coffee-rails (~> 4.1.0)
   devise
   dotenv-rails
@@ -258,8 +268,10 @@ DEPENDENCIES
   rails (= 4.2.6)
   rails-assets-binnacle (~> 0.1.7)!
   rails-assets-gravatarjs (~> 1.0.0)!
+  rails-assets-highcharts (~> 4.2.3)!
   rails-assets-jquery-ui (~> 1.11.3)!
   rails-assets-jspanel (~> 2.6.1)!
+  rails-assets-remarkable-bootstrap-notify (~> 3.1.3)!
   rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

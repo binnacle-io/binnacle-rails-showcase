@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require binnacle_chat
 //= require js-routes
+//= require remarkable-bootstrap-notify
 //= require_tree .

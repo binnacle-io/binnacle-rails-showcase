@@ -1,0 +1,255 @@
+<div class="page-header">
+  <h1>Realtime Rails</h1>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Building a Realtime Feature</h4>
+  <p>
+    The example below uses a Pie Chart made with <a href="https://github.com/ankane/chartkick" target="blank">
+    <strong>chartkick</strong></a> out of the votes/likes on a 'Candidates' model decorated using
+    <a href="https://github.com/ryanto/acts_as_votable" target="blank"><strong>acts_as_votable</strong></a>.
+    As Users vote the votes are broadcasted to all users and the Pie Chart is updated.
+  </p>
+  <p>Start a second browser session and register/login as a different user to see the votes chart updated in real-time.</p>
+</div>
+
+<%= pie_chart @candidates.map { |c| [c.name, c.votes_for.size] } %>
+
+<p>Use your candidate's button to cast a vote:</p>
+
+<div class="btn-group" role="group">
+  <% @candidates.each do |candidate| %>
+    <%= link_to(candidate.name, vote_candidate_path(candidate),
+                remote: true, method: :put, class: "btn btn-default") %>
+  <% end %>
+</div>
+
+<h2>Implementation</h2>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Dependencies</h4>
+  <p>
+    We add the acts_as_votable and chartkick Gems as well as the client side assets
+    <a href="http://bootstrap-notify.remabledesigns.com/" target="blank">
+    <strong>bootstrap-notify</strong></a> (to provide feedback upon voting) and
+    <a href="http://www.highcharts.com/" target="blank"><strong>highcharts</strong></a>
+    (a requirement for chartkick).
+  </p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">gem 'acts_as_votable', '~> 0.10.0'
+gem 'chartkick', '~> 1.4', '>= 1.4.1'
+
+# client-side assets
+source 'https://rails-assets.org' do
+  gem 'rails-assets-remarkable-bootstrap-notify', '~> 3.1.3'
+  gem 'rails-assets-highcharts', '~> 4.2.3'
+end</code>
+    </pre>
+  </figure>
+  <p>For the bootstrap notify Javascript assets add a require directive in <code>app/assets/javascripts/application.js</code>:</p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-javascript" data-lang="javascript">//= require remarkable-bootstrap-notify</code>
+    </pre>
+  </figure>
+  <p>The highcharts and chartkick JS assets need to be included in the HEAD of the main application layout (all other assets are included at the bottom of the page):</p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">...
+  <%%= javascript_include_tag 'highcharts', 'chartkick' %>
+&lt;/head&gt;</code>
+    </pre>
+  </figure>
+  <p>You might also need to precompile the highcharts.js asset in <code>config/initializers/assets.rb</code>:<p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">Rails.application.config.assets.precompile += %w( highcharts.js )</code>
+    </pre>
+  </figure>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Acts As Votable Setup</h4>
+  <p>Acts As Votable requires that we run a migration and decorate the involved models.</p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-bash" data-lang="bash">rails generate acts_as_votable:migration</code>
+    </pre>
+  </figure>
+  <p>The model to be voted on is Candidate. Generate the model using:</p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-bash" data-lang="bash">rails generate model candidate name --no-fixture --no-test-framework</code>
+    </pre>
+  </figure>
+  <p>With the database migrations in place we can migrate with <code>rake db:migrate</code>. Now we can
+    decorate the models accordingly, starting with the User model which will serve as the voter:</p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">class User < ActiveRecord::Base
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  attr_accessor :login
+
+  acts_as_voter
+end</code>
+    </pre>
+  </figure>
+  <p>And the Candidate model which Users will vote on:</p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">class Candidate < ActiveRecord::Base
+  acts_as_votable
+end</code>
+    </pre>
+  </figure>
+  <p>Let's also seed the database with a few Users and a few Candidates and make those
+    users cast some votes so that we can see some data in <code>db/seeds.rb</code> (don't forger to run <code>rake db:seed</code>):</p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">bernie = Candidate.find_or_create_by(name: 'Bernie Sanders')
+hillary = Candidate.find_or_create_by(name: 'Hillary Clinton')
+ted = Candidate.find_or_create_by(name: 'Ted Cruz')
+donald = Candidate.find_or_create_by(name: 'Donald Trump')
+marco = Candidate.find_or_create_by(name: 'Marco Rubio')
+
+pwd = rand(36**20).to_s(36)
+arthur = User.find_or_create_by(email: 'arthur@dontpanic.com')
+arthur.update({
+  name: 'Arthur Dent',
+  password: pwd,
+  password_confirmation: pwd
+})
+
+pwd = rand(36**20).to_s(36)
+slartibartfast = User.find_or_create_by(email: 'slart@dontpanic.com')
+slartibartfast.update({
+  name: 'Slartibartfast',
+  password: pwd,
+  password_confirmation: pwd
+})
+...
+# Cast some votes
+bernie.liked_by arthur
+hillary.liked_by slartibartfast
+...</code>
+    </pre>
+  </figure>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Candidates Controller</h4>
+  <p>
+    The candidates controller provides two actions; index and vote. Index will render a page
+    with the pie chart (the page you are looking at now!) and the voting buttons. The vote action will
+    receive a PUT HTTP request form the buttons to cast the vote for a candidate on behalf of the currently logged in user.
+  </p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">class CandidatesController < ApplicationController
+  respond_to :js, except: :index
+
+  def index
+    @candidates = Candidate.all
+  end
+
+  def vote
+    candidate = Candidate.find(params[:id])
+    candidate.liked_by current_user
+    votes = Candidate.all.map { |c| [c.name, c.votes_for.size] }
+
+    client = Binnacle::Client.new(ENV['BINNACLE_API_KEY'], ENV['BINNACLE_API_SECRET'])
+    client.signal_asynch(ENV['BINNACLE_VOTING_CTX'], 'VOTES', current_user.id, '', 'INFO', [], votes)
+  end
+
+end</code>
+    </pre>
+  </figure>
+  <p>The index action simply returns the collection of all candidates, while the vote action applies
+  a vote to a candidate and signals Binnacle with the current state of the voting (we send a hash of candidates names and the number of votes).</p>
+  <p>The <code>signal_asynch</code> method of the binnacle client takes as parameters:</p>
+  <ul>
+    <li>context_id: Your default Binnacle Context ID</li>
+    <li>event_name: The name of the event</li>
+    <li>client_id: Use for system/subsystem/component id/name</li>
+    <li>session_id: Use to track a user session across requests/processes</li>
+    <li>log_level: UNKNOWN, FATAL, ERROR, WARN, INFO, DEBUG</li>
+    <li>tags (optional): An Array of tags, e.g. `['accounts', 'refunds', 'dispute']`</li>
+    <li>json (optional): A Ruby Hash, e.g. `{ message: "there you are!" }` representing a payload for the signal</li>
+  </ul>
+
+  <p>The routes for the candidates in <code>config/routes.rb</code> add a GET route for the index action and a PUT for the votes:</p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">resources :candidates, only: [:index] do
+  member do
+    put :vote
+  end
+end</code>
+    </pre>
+  </figure>
+
+  <p>The <code>app/views/candidates/index.html.erb</code> page uses the pie_chart view helper to render the pie chart and for the voting
+    buttons we look over the <code>@candidates</code> instance variable and create links for each candidate to the <code>vote_candidate_path</code>.
+   </p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby"><%%= pie_chart @candidates.map { |c| [c.name, c.votes_for.size] } %>
+
+&lt;p&gt;Use your candidate's button to cast a vote:&lt;/p&gt;
+
+&lt;div class="btn-group" role="group"&gt
+  <%% @candidates.each do |candidate| %>
+    <%%= link_to(candidate.name, vote_candidate_path(candidate), remote: true, method: :put, class: "btn btn-default") %>
+  <%% end %>
+&lt;/div&gt</code>
+    </pre>
+  </figure>
+
+  <p>The Javascript response to the vote action in <code>app/views/candidates/vote.js.erb</code> uses the bootstrap notification
+     library to let the user know we've received their vote:</p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-js" data-lang="js">$.notify({
+  icon: 'fa fa-check-circle',
+  title: '<strong>You voted</strong>',
+  message: 'Thanks for you vote!'
+})</code>
+    </pre>
+  </figure>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Listening for Voting Updates</h4>
+  <p>The listening for voting updates happens in the Coffeescript file <code>app/assets/javascripts/candidates.coffee</code>. At the top we check that
+  the current page has the class <code>.candidates_index</code> so we only listen for Websocket/Comet broadcasts on the right page. We set this page identifier
+  class on the application layout with <code>&lt;body role="document" class="binnacle <%%= "#{params[:controller]}_#{params[:action]}" %>"></code>:</p>
+  <figure class="highlight">
+    <pre>
+      <code class="language-javascript" data-lang="javascript">$(document).ready ->
+  if $('.candidates_index').length > 0
+    votingUpdate = (event) ->
+      new Chartkick.PieChart("chart-1", event.json)
+
+    client = new (Binnacle.Client)(
+      contextId: '<%= ENV["BINNACLE_VOTING_CTX"] %>'
+      endPoint: '<%= Binnacle.configuration.url %>'
+      apiKey: '<%= ENV["BINNACLE_API_KEY"] %>'
+      apiSecret: '<%= ENV["BINNACLE_API_SECRET"] %>'
+      filterBy: 'event'
+      filterByValue: 'VOTES'
+      onSignal: votingUpdate
+    )
+
+    client.subscribe()</code>
+    </pre>
+  </figure>
+  <p>At the bottom of the file we instantiate a Binnacle JS client passing the target context we
+  want to listen on for vote updates, the binnacle endpoint and the publisher API key/secret</p>
+  <p>If you noticed in the controller we used the event name 'VOTES' so we will ignore any other events on that context
+  by using the <code>filterBy</code> and <code>filterByValue</code> configuration attributes.</p>
+  <p>Finally we set an event handler for voting updates with the <code>onSignal</code> configuration attribute which we
+    set to the <code>votingUpdate</code> function, which simply recreates the pie chart with the new votes.
+</div>

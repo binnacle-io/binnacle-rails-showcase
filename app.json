@@ -45,6 +45,10 @@
       "description": "A context to use to demo the ActiveRecord CUD Widget.",
       "value": ""
     },
+    "BINNACLE_VOTING_CTX": {
+      "description": "A context to use to demo Binnacle's Push Service.",
+      "value": ""
+    },
     "BINNACLE_ACCT_ID": {
       "description": "The Account Id.",
       "value": ""
