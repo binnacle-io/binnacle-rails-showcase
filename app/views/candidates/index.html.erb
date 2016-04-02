@@ -248,7 +248,7 @@ end</code>
   </figure>
   <p>At the bottom of the file we instantiate a Binnacle JS client passing the target context we
   want to listen on for vote updates, the binnacle endpoint and the publisher API key/secret</p>
-  <p>If you noticed in the controller we used the event name 'VOTES' so we will ignore any other events on that context
+  <p>In the controller we used the event name 'VOTES' so we will ignore any other events on that context
   by using the <code>filterBy</code> and <code>filterByValue</code> configuration attributes.</p>
   <p>Finally we set an event handler for voting updates with the <code>onSignal</code> configuration attribute which we
     set to the <code>votingUpdate</code> function, which simply recreates the pie chart with the new votes.
