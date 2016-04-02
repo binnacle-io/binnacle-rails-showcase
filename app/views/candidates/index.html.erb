@@ -53,7 +53,7 @@ end</code>
       <code class="language-javascript" data-lang="javascript">//= require remarkable-bootstrap-notify</code>
     </pre>
   </figure>
-  <p>The highcharts and chartkick JS assets need to be included in the HEAD of the main application layout (all other assets are included at the bottom of the page):</p>
+  <p>The highcharts and chartkick JS assets need to be included in the HEAD section of the main application layout (all other assets are included at the bottom of the page):</p>
   <figure class="highlight">
     <pre>
       <code class="language-ruby" data-lang="ruby">...
@@ -234,10 +234,10 @@ end</code>
       new Chartkick.PieChart("chart-1", event.json)
 
     client = new (Binnacle.Client)(
-      contextId: '<%= ENV["BINNACLE_VOTING_CTX"] %>'
-      endPoint: '<%= Binnacle.configuration.url %>'
-      apiKey: '<%= ENV["BINNACLE_API_KEY"] %>'
-      apiSecret: '<%= ENV["BINNACLE_API_SECRET"] %>'
+      contextId: '<%%= ENV["BINNACLE_VOTING_CTX"] %>'
+      endPoint: '<%%= Binnacle.configuration.url %>'
+      apiKey: '<%%= ENV["BINNACLE_API_KEY"] %>'
+      apiSecret: '<%%= ENV["BINNACLE_API_SECRET"] %>'
       filterBy: 'event'
       filterByValue: 'VOTES'
       onSignal: votingUpdate
