@@ -20,4 +20,18 @@ class CandidatesController < ApplicationController
                                                votes)
   end
 
+  def reset_votes_for
+    current_user.votes.delete_all
+
+    votes = Candidate.all.map { |c| [c.name, c.votes_for.size] }
+
+    client = Binnacle::Client.new(ENV['BINNACLE_API_KEY'], ENV['BINNACLE_API_SECRET'])
+    client.signal_asynch(ENV['BINNACLE_VOTING_CTX'], 'VOTES',
+                                               current_user.id,
+                                               '',
+                                               'INFO',
+                                               [],
+                                               votes)
+  end
+
 end

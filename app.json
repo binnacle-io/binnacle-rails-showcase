@@ -10,7 +10,7 @@
   "repository": "https://github.com/binnacle-io/binnacle-rails-showcase",
   "logo": "https://binnacle.io/assets/logo-small-black.png",
   "scripts": {
-    "postdeploy": "bundle exec rake db:migrate"
+    "postdeploy": "bundle exec rake db:migrate && bundle exec rake db:seed"
   },
   "env": {
     "BINNACLE_ENDPOINT": {

@@ -24,6 +24,9 @@
   <% end %>
 </div>
 
+<%= link_to("Reset my votes", reset_votes_for_candidates_path,
+            remote: true, method: :put, class: "btn btn-warning") %>
+
 <h2>Implementation</h2>
 
 <div class="bs-callout bs-callout-info">

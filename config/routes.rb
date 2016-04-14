@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   resources :articles
   resources :candidates, only: [:index] do
+    collection do
+      put :reset_votes_for
+    end
     member do
       put :vote
     end
