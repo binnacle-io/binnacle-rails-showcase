@@ -17,8 +17,10 @@
     each occurrence that is a multiple of ten (10x, 100x, ...)
     </p>
 
-    <%= link_to(error_context_log, class: 'btn btn-primary', target: 'blank') do %>
-      <i class="fa fa-external-link"></i> Open Errors View
+    <% if error_context_log %>
+      <%= link_to(error_context_log, class: 'btn btn-primary', target: 'blank') do %>
+        <i class="fa fa-external-link"></i> Open Errors View
+      <% end %>
     <% end %>
   </div>
 </div>

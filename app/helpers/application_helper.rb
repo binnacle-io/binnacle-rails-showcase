@@ -4,19 +4,35 @@ module ApplicationHelper
   end
 
   def application_log
-    "#{host}/accounts/#{ENV['BINNACLE_ACCT_ID']}/apps/#{ENV['BINNACLE_APP_ID']}/log"
+    if ENV['BINNACLE_ACCT_ID'] && ENV['BINNACLE_APP_ID']
+      "#{host}/accounts/#{ENV['BINNACLE_ACCT_ID']}/apps/#{ENV['BINNACLE_APP_ID']}/log"
+    else
+      nil
+    end
   end
 
   def logging_context_log
-    "#{host}/accounts/#{ENV['BINNACLE_ACCT_ID']}/apps/#{ENV['BINNACLE_APP_ID']}/contexts/#{ENV['BINNACLE_APP_LOG_CTX_ID']}/log"
+    if ENV['BINNACLE_ACCT_ID'] && ENV['BINNACLE_APP_ID'] && ENV['BINNACLE_APP_LOG_CTX_ID']
+      "#{host}/accounts/#{ENV['BINNACLE_ACCT_ID']}/apps/#{ENV['BINNACLE_APP_ID']}/contexts/#{ENV['BINNACLE_APP_LOG_CTX_ID']}/log"
+    else
+      nil
+    end
   end
 
   def error_context_log
-    "#{host}/accounts/#{ENV['BINNACLE_ACCT_ID']}/apps/#{ENV['BINNACLE_APP_ID']}/contexts/#{ENV['BINNACLE_APP_ERR_CTX_ID']}"
+    if ENV['BINNACLE_ACCT_ID'] && ENV['BINNACLE_APP_ID'] && ENV['BINNACLE_APP_ERR_CTX_ID']
+      "#{host}/accounts/#{ENV['BINNACLE_ACCT_ID']}/apps/#{ENV['BINNACLE_APP_ID']}/contexts/#{ENV['BINNACLE_APP_ERR_CTX_ID']}"
+    else
+      nil
+    end
   end
 
   def edit_app
-    "#{host}/accounts/#{ENV['BINNACLE_ACCT_ID']}/apps/#{ENV['BINNACLE_APP_ID']}/edit"
+    if ENV['BINNACLE_ACCT_ID'] && {ENV['BINNACLE_APP_ID']
+      "#{host}/accounts/#{ENV['BINNACLE_ACCT_ID']}/apps/#{ENV['BINNACLE_APP_ID']}/edit"
+    else
+      nil
+    end
   end
 
 end

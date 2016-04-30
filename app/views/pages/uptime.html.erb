@@ -31,8 +31,10 @@
     <%= image_tag('enabling_uptime.png', class: 'img-responsive dropshadow') %>
     </p>
 
-    <%= link_to(edit_app, class: 'btn btn-primary', target: 'blank') do %>
-      <i class="fa fa-external-link"></i> Edit App
+    <% if edit_app %>
+      <%= link_to(edit_app, class: 'btn btn-primary', target: 'blank') do %>
+        <i class="fa fa-external-link"></i> Edit App
+      <% end %>
     <% end %>
   </div>
 </div>
