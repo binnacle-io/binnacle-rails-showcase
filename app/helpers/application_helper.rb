@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def edit_app
-    if ENV['BINNACLE_ACCT_ID'] && {ENV['BINNACLE_APP_ID']
+    if ENV['BINNACLE_ACCT_ID'] && ENV['BINNACLE_APP_ID']
       "#{host}/accounts/#{ENV['BINNACLE_ACCT_ID']}/apps/#{ENV['BINNACLE_APP_ID']}/edit"
     else
       nil
