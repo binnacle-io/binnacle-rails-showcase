@@ -147,7 +147,7 @@ hillary.liked_by slartibartfast
   <p>
     The candidates controller provides two actions; index and vote. Index will render a page
     with the pie chart (the page you are looking at now!) and the voting buttons. The vote action will
-    receive a PUT HTTP request form the buttons to cast the vote for a candidate on behalf of the currently logged in user.
+    receive a PUT HTTP request from the buttons to cast the vote for a candidate on behalf of the currently logged in user.
   </p>
   <figure class="highlight">
     <pre>
@@ -172,7 +172,7 @@ end</code>
   </figure>
   <p>The index action simply returns the collection of all candidates, while the vote action applies
   a vote to a candidate and signals Binnacle with the current state of the voting (we send a hash of candidates names and the number of votes).</p>
-  <p>The <code>signal_asynch</code> method of the binnacle client takes as parameters:</p>
+  <p>The <code>signal_asynch</code> method of the Binnacle client takes as parameters:</p>
   <ul>
     <li>context_id: Your default Binnacle Context ID</li>
     <li>event_name: The name of the event</li>
@@ -250,7 +250,7 @@ end</code>
     </pre>
   </figure>
   <p>At the bottom of the file we instantiate a Binnacle JS client passing the target context we
-  want to listen on for vote updates, the binnacle endpoint and the publisher API key/secret</p>
+  want to listen on for vote updates, the Binnacle endpoint and the publisher API key/secret</p>
   <p>In the controller we used the event name 'VOTES' so we will ignore any other events on that context
   by using the <code>filterBy</code> and <code>filterByValue</code> configuration attributes.</p>
   <p>Finally we set an event handler for voting updates with the <code>onSignal</code> configuration attribute which we
