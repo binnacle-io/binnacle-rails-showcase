@@ -12,7 +12,7 @@ class CandidatesController < ApplicationController
     votes = Candidate.all.map { |c| [c.name, c.votes_for.size] }
 
     client = Binnacle::Client.new(ENV['BINNACLE_API_KEY'], ENV['BINNACLE_API_SECRET'])
-    client.signal_asynch(ENV['BINNACLE_VOTING_CTX'], 'VOTES',
+    client.signal_asynch(ENV['BINNACLE_VOTING_CHANNEL'], 'VOTES',
                                                current_user.id,
                                                '',
                                                'INFO',
@@ -26,7 +26,7 @@ class CandidatesController < ApplicationController
     votes = Candidate.all.map { |c| [c.name, c.votes_for.size] }
 
     client = Binnacle::Client.new(ENV['BINNACLE_API_KEY'], ENV['BINNACLE_API_SECRET'])
-    client.signal_asynch(ENV['BINNACLE_VOTING_CTX'], 'VOTES',
+    client.signal_asynch(ENV['BINNACLE_VOTING_CHANNEL'], 'VOTES',
                                                current_user.id,
                                                '',
                                                'INFO',

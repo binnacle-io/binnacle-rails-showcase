@@ -1,11 +1,25 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
   <h1>Binnacle Showcase</h1>
-  <p>This sample Rails 4 application showcases most of the features Binnacle provides for Rails Applications.</p>
+  <p>This sample Rails 5 application showcases most of the features Binnacle provides for Rails Applications.</p>
   <p>Feel free to use it as a foundation, or take the pieces that suit your needs.</p>
 </div>
 
+<%- unless user_signed_in? %>
 <div class="bs-callout bs-callout-info">
   <h4>Getting Started</h4>
   <p>Create a sample user by signing up above to start exploring what Binnacle can do for your Rails applications!</p>
+</div>
+<% end %>
+
+<div class="bs-callout bs-callout-info">
+  <h4>What can Binnacle do for your Rails Applications?</h4>
+  <p>Binnacle receives HTTP signals and reacts to those signals based on recipes you create to:</p>
+  <ul>
+    <li>Send <strong>Browser Native Web Push Notifications</strong> to all major browsers.</li>
+    <li>Broadcast the incoming signals to subcribers using <strong>WebSockets</strong>, Server Sent Events (SSE), Long-Polling, HTTP Streaming (Forever frame), or JSONP.</li>
+    <li>Send <strong>emails</strong> in response to an incoming signal.</li>
+    <li>Send <strong>SMS messages</strong> in response to an incoming signal.</li>
+    <li>Post to <strong>Twitter</strong>, <strong>Slack</strong> and many other available integrations.</li>
+  </ul>
 </div>

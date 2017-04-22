@@ -21,7 +21,7 @@ class LoggingController < ApplicationController
   end
 
   def with_procname_hash
-    Binnacle.logger.info(context_id: ENV['BINNACLE_APP_LOG_CTX'], session_id: '8675309', event_name: 'failed_transfer') { 'transfer failed, bad RTN' }
+    Binnacle.logger.info(channel_id: ENV['BINNACLE_APP_LOG_CHANNEL'], session_id: '8675309', event_name: 'failed_transfer') { 'transfer failed, bad RTN' }
     render nothing: true
   end
 

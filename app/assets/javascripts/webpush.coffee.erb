@@ -1,0 +1,60 @@
+$(document).ready ->
+  if $('.webpush_index').length > 0
+
+    tokenRefresh = () ->
+      console.log(">>>> tokenRefresh")
+
+    beforePermissionRequest = () ->
+      console.log(">>>> beforePermissionRequest")
+
+    permissionGranted = () ->
+      console.log(">>>> permissionGranted")
+
+    permissionFailed = () ->
+      console.log(">>>> permissionFailed")
+
+    tokenDeleted = () ->
+      console.log(">>>> tokenDeleted")
+
+    errorDeletingToken = () ->
+      console.log(">>>> errorDeletingToken")
+
+    errorRetrievingToken = () ->
+      console.log(">>>> errorRetrievingToken")
+
+    errorRetrievingRefreshedToken = () ->
+      console.log(">>>> errorRetrievingRefreshedToken")
+
+    onMessage = (payload) ->
+      console.log(">>>> onMessage: #{payload['notification']}")
+      $.notify {
+        icon: payload['notification']['icon'],
+        title: "<strong>#{payload['notification']['title']}</strong>",
+        message: payload['notification']['body']
+        url: payload['notification']['click_action']
+      },
+        icon_type: 'image'
+        delay: 100000
+        type: 'minimalist'
+        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert"><img data-notify="icon" class="img-circle pull-left"><span data-notify="title">{1}</span><div data-notify="message">{2}</div></div>'
+
+    webpushClient = new (Binnacle.WebPushClient)(
+      channelId: '<%= ENV["BINNACLE_WP_CHANNEL"] %>'
+      endPoint: '<%= Binnacle.configuration.url %>'
+      apiKey: '<%= ENV["BINNACLE_API_KEY"] %>'
+      apiSecret: '<%= ENV["BINNACLE_API_SECRET"] %>'
+      firebaseApiKey: '<%= ENV["BINNACLE_FIREBASE_API_KEY"] %>'
+      firebaseMessagingSenderId: '<%= ENV["BINNACLE_FIREBASE_MESSAGING_SENDER_ID"] %>'
+      userIdentifier: 'me'
+      onMessage: onMessage
+      onTokenRefresh: tokenRefresh
+      onBeforePermissionRequest: beforePermissionRequest
+      onPermissionGranted: permissionGranted
+      onPermissionFailed: permissionFailed
+      onTokenDeleted: tokenDeleted
+      onErrorDeletingToken: errorDeletingToken
+      onErrorRetrievingToken: errorRetrievingToken
+      onErrorRetrievingRefreshedToken: errorRetrievingRefreshedToken
+    )
+
+    webpushClient.subscribe()

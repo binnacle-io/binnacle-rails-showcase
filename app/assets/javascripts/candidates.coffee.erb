@@ -4,7 +4,7 @@ $(document).ready ->
       new Chartkick.PieChart("chart-1", event.json)
 
     client = new (Binnacle.Client)(
-      contextId: '<%= ENV["BINNACLE_VOTING_CTX"] %>'
+      channelId: '<%= ENV["BINNACLE_VOTING_CHANNEL"] %>'
       endPoint: '<%= Binnacle.configuration.url %>'
       apiKey: '<%= ENV["BINNACLE_API_KEY"] %>'
       apiSecret: '<%= ENV["BINNACLE_API_SECRET"] %>'

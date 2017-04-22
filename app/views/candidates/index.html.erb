@@ -164,7 +164,7 @@ hillary.liked_by slartibartfast
     votes = Candidate.all.map { |c| [c.name, c.votes_for.size] }
 
     client = Binnacle::Client.new(ENV['BINNACLE_API_KEY'], ENV['BINNACLE_API_SECRET'])
-    client.signal_asynch(ENV['BINNACLE_VOTING_CTX'], 'VOTES', current_user.id, '', 'INFO', [], votes)
+    client.signal_asynch(ENV['BINNACLE_VOTING_CHANNEL'], 'VOTES', current_user.id, '', 'INFO', [], votes)
   end
 
 end</code>
@@ -174,7 +174,7 @@ end</code>
   a vote to a candidate and signals Binnacle with the current state of the voting (we send a hash of candidates names and the number of votes).</p>
   <p>The <code>signal_asynch</code> method of the Binnacle client takes as parameters:</p>
   <ul>
-    <li>context_id: Your default Binnacle Context ID</li>
+    <li>channel_id: Your default Binnacle Channel ID</li>
     <li>event_name: The name of the event</li>
     <li>client_id: Use for system/subsystem/component id/name</li>
     <li>session_id: Use to track a user session across requests/processes</li>
@@ -237,7 +237,7 @@ end</code>
       new Chartkick.PieChart("chart-1", event.json)
 
     client = new (Binnacle.Client)(
-      contextId: '<%%= ENV["BINNACLE_VOTING_CTX"] %>'
+      channelId: '<%%= ENV["BINNACLE_VOTING_CHANNEL"] %>'
       endPoint: '<%%= Binnacle.configuration.url %>'
       apiKey: '<%%= ENV["BINNACLE_API_KEY"] %>'
       apiSecret: '<%%= ENV["BINNACLE_API_SECRET"] %>'
@@ -249,9 +249,9 @@ end</code>
     client.subscribe()</code>
     </pre>
   </figure>
-  <p>At the bottom of the file we instantiate a Binnacle JS client passing the target context we
+  <p>At the bottom of the file we instantiate a Binnacle JS client passing the target channel we
   want to listen on for vote updates, the Binnacle endpoint and the publisher API key/secret</p>
-  <p>In the controller we used the event name 'VOTES' so we will ignore any other events on that context
+  <p>In the controller we used the event name 'VOTES' so we will ignore any other events on that channel
   by using the <code>filterBy</code> and <code>filterByValue</code> configuration attributes.</p>
   <p>Finally we set an event handler for voting updates with the <code>onSignal</code> configuration attribute which we
     set to the <code>votingUpdate</code> function, which simply recreates the pie chart with the new votes.

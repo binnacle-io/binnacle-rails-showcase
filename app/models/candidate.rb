@@ -1,3 +1,3 @@
-class Candidate < ActiveRecord::Base
+class Candidate < ApplicationRecord
   acts_as_votable
 end

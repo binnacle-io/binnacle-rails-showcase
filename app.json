@@ -29,24 +29,24 @@
       "description": "The API secret for an App publisher.",
       "value": ""
     },
-    "BINNACLE_APP_LOG_CTX": {
-      "description": "The Binnacle ID of the Rails Log Context.",
+    "BINNACLE_APP_LOG_CHANNEL": {
+      "description": "The Binnacle ID of the Rails Log Channel.",
       "value": ""
     },
-    "BINNACLE_APP_ERR_CTX": {
-      "description": "The Binnacle ID of the Rails Error/Exceptions Context.",
+    "BINNACLE_APP_ERR_CHANNEL": {
+      "description": "The Binnacle ID of the Rails Error/Exceptions Channel.",
       "value": ""
     },
-    "BINNACLE_CHAT_CTX": {
-      "description": "A context to be used to demo the Chat Widget.",
+    "BINNACLE_CHAT_CHANNEL": {
+      "description": "A Channel to be used to demo the Chat Widget.",
       "value": ""
     },
-    "BINNACLE_AR_CTX": {
-      "description": "A context to use to demo the ActiveRecord CUD Widget.",
+    "BINNACLE_AR_CHANNEL": {
+      "description": "A Channel to use to demo the ActiveRecord CUD Widget.",
       "value": ""
     },
-    "BINNACLE_VOTING_CTX": {
-      "description": "A context to use to demo Binnacle's Push Service.",
+    "BINNACLE_VOTING_CHANNEL": {
+      "description": "A Channel to use to demo Binnacle's Push Service.",
       "value": ""
     },
     "BINNACLE_ACCT_ID": {
@@ -57,12 +57,12 @@
       "description": "The App Id.",
       "value": ""
     },
-    "BINNACLE_APP_LOG_CTX_ID": {
-      "description": "Logging Context Id.",
+    "BINNACLE_APP_LOG_CHANNEL_ID": {
+      "description": "Logging Channel Id.",
       "value": ""
     },
-    "BINNACLE_APP_ERR_CTX_ID": {
-      "description": "The Error Context Id.",
+    "BINNACLE_APP_ERR_CHANNEL_ID": {
+      "description": "The Error Channel Id.",
       "value": ""
     }
   }

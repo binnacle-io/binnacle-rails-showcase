@@ -35,15 +35,15 @@ $(document).ready ->
       article = JSON.parse(event.json)
 
       switch event.eventName
-        when 'create'
+        when 'create_article'
           addArticle(article)
-        when 'update'
+        when 'update_article'
           updateArticle(article)
-        when 'destroy'
+        when 'destroy_article'
           removeArticle(article)
 
     client = new (Binnacle.Client)(
-      contextId: '<%= ENV["BINNACLE_AR_CTX"] %>'
+      channelId: '<%= ENV["BINNACLE_AR_CHANNEL"] %>'
       endPoint: '<%= Binnacle.configuration.url %>'
       apiKey: '<%= ENV["BINNACLE_API_KEY"] %>'
       apiSecret: '<%= ENV["BINNACLE_API_SECRET"] %>'
