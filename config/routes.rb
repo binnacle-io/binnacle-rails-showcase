@@ -32,6 +32,6 @@ Rails.application.routes.draw do
   root to: "home#index", as: :home
   get 'manifest.json', to: redirect(ActionController::Base.helpers.asset_path('manifest.json'))
   get 'firebase-messaging-sw.js', to: -> (env) do
-    [200, { 'Content-Type' => 'application/javascript' }, [Rails.application.assets['firebase-messaging-sw.js'].to_s]]
+    [200, { 'Content-Type' => 'application/javascript' }, [Rails.application.assets_manifest.find_sources('firebase-messaging-sw.js').first]]
   end
 end
