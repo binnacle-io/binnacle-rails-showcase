@@ -46,9 +46,21 @@
       "value": ""
     },
     "BINNACLE_VOTING_CHANNEL": {
-      "description": "A Channel to use to demo Binnacle's Push Service.",
+      "description": "A Channel to use to demo Binnacle's Websockets.",
       "value": ""
     },
+    "BINNACLE_WP_CHANNEL": {
+      "description": "A Channel to use to demo Binnacle's Native Web Browser Push Service.",
+      "value": ""
+    },  
+    "BINNACLE_FIREBASE_API_KEY": {
+      "description": "Your Firebase API Key",
+      "value": ""
+    },  
+    "BINNACLE_FIREBASE_MESSAGING_SENDER_ID": {
+      "description": "Your Firebase Messaging Sender ID.",
+      "value": ""
+    },      
     "BINNACLE_ACCT_ID": {
       "description": "The Account Id.",
       "value": ""
