@@ -1,9 +1,9 @@
 <div class="page-header">
-  <h1>Exceptions</h1>
+  <h1>Exception to Signal</h1>
 </div>
 
 <p>
-  <p>Binnacle can trap and report all unhandled exceptions thrown by your Rails application.</p>
+  <p>Binnacle can generate signal is response to exceptions thrown by your Rails application.</p>
 </p>
 
 <div class="panel panel-primary">
@@ -13,8 +13,6 @@
   <div class="panel-body">
     <p>
     You can view the error channel (<strong><%= ENV['BINNACLE_APP_ERR_CHANNEL'] %></strong>) where exceptions are summarized.
-    Binnacle will also automatically alert you when the exception first occurs and then subsequently on
-    each occurrence that is a multiple of ten (10x, 100x, ...)
     </p>
 
     <% if error_channel_log %>
@@ -27,12 +25,11 @@
 
 <div class="bs-callout bs-callout-info">
   <h4>Exception Trapping</h4>
-  <p>The code below triggers one of ten different exceptions, use the 'Try it!' button to see them reported on Binnacle:</p>
+  <p>The code below triggers one of ten different exceptions, use the <strong>'Try it!'</strong> button to send a signal to Binnacle:</p>
   <div class="zero-clipboard"><%= button_to "Try it!", trigger_exception_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger an exception and watch them reported on binnacle.io"} %></div>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-def trigger
+      <code class="language-ruby" data-lang="ruby">def trigger
   random_choice = 1 + rand(10)
   case random_choice
   when 1
@@ -57,8 +54,7 @@ def trigger
     h = {}
     h.fetch("baz") #=> KeyError: key not found: "baz"
   end
-end
-      </code>
+end</code>
     </pre>
   </figure>
 </div>

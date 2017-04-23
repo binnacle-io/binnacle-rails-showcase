@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>ActiveRecord CUD</h1>
+  <h1>Active Record CUD</h1>
 </div>
 
 <div class="bs-callout bs-callout-info">
@@ -10,11 +10,9 @@ with the state of the object (to_json). Use in conjunction with the <a href="htt
   <p>To enabled signals from an ActiveRecord model simply use the the <strong>binnacle_signal_on</strong> class method:</p>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-class Article < ActiveRecord::Base
+      <code class="language-ruby" data-lang="ruby">class Article < ActiveRecord::Base
   binnacle_signal on: [:create, :update, :destroy]
-end
-      </code>
+end</code>
     </pre>
   </figure>
 

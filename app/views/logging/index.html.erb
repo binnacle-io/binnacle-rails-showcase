@@ -36,9 +36,7 @@
   <div class="zero-clipboard"><%= button_to "Try it!", logging_info_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %></div>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-Binnacle.logger.info("This is an info message")
-      </code>
+      <code class="language-ruby" data-lang="ruby">Binnacle.logger.info("This is an info message")</code>
     </pre>
   </figure>
 </div>
@@ -49,10 +47,8 @@ Binnacle.logger.info("This is an info message")
   <div class="zero-clipboard"><%= button_to "Try it!", logging_debug_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %></div>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-Binnacle.logger.level = Logger::DEBUG
-Binnacle.logger.debug("This is an debug message")
-      </code>
+      <code class="language-ruby" data-lang="ruby">Binnacle.logger.level = Logger::DEBUG
+Binnacle.logger.debug("This is an debug message")</code>
     </pre>
   </figure>
 </div>
@@ -65,10 +61,8 @@ Binnacle.logger.debug("This is an debug message")
   <div class="zero-clipboard"><%= button_to "Try it!", logging_with_procname_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %></div>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-Binnacle.logger.level = Logger::ERROR
-Binnacle.logger.error('comm_error') { "Can't reach the service endpoint!" }
-      </code>
+      <code class="language-ruby" data-lang="ruby">Binnacle.logger.level = Logger::ERROR
+Binnacle.logger.error('comm_error') { "Can't reach the service endpoint!" }</code>
     </pre>
   </figure>
 </div>
@@ -80,11 +74,9 @@ Binnacle.logger.error('comm_error') { "Can't reach the service endpoint!" }
   <div class="zero-clipboard"><%= button_to "Try it!", logging_with_procname_hash_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %></div>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-Binnacle.logger.info(channel_id: '<%= ENV['BINNACLE_APP_LOG_CHANNEL'] %>', session_id: '8675309', event_name: 'failed_transfer') {
+      <code class="language-ruby" data-lang="ruby">Binnacle.logger.info(channel_id: '<%= ENV['BINNACLE_APP_LOG_CHANNEL'] %>', session_id: '8675309', event_name: 'failed_transfer') {
   'transfer failed, bad RTN'
-}
-      </code>
+}</code>
     </pre>
   </figure>
 </div>
@@ -95,12 +87,10 @@ Binnacle.logger.info(channel_id: '<%= ENV['BINNACLE_APP_LOG_CHANNEL'] %>', sessi
   <div class="zero-clipboard"><%= button_to "Try it!", logging_tagged_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %></div>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-Binnacle.logger.tagged("cart") do
+      <code class="language-ruby" data-lang="ruby">Binnacle.logger.tagged("cart") do
   Binnacle.logger.info "Adding Item 123"
   Binnacle.logger.info "Adding Item 234"
-end
-      </code>
+end</code>
     </pre>
   </figure>
 </div>
@@ -111,12 +101,10 @@ end
   <div class="zero-clipboard"><%= button_to "Try it!", logging_multi_tagged_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %></div>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-Binnacle.logger.tagged("account", "payments") do
+      <code class="language-ruby" data-lang="ruby">Binnacle.logger.tagged("account", "payments") do
   Binnacle.logger.info 'Added new credit card of type VISA'
   Binnacle.logger.info 'Remove Paypal account'
-end
-      </code>
+end</code>
     </pre>
   </figure>
 </div>

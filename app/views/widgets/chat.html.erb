@@ -6,12 +6,10 @@
   <h4>Binnacle Powered Chat</h4>
   <p>The Binnacle Chat Widget for Rails is a simple plugin that provides a Rails View Helper
   which gives you a floating chat window powered by Binnacle.</p>
-  <p>To test the chat widget, create another user and begin chatting!</p>
+  <p>To test the chat widget, launch the application on another browser, create another user and start chatting!</p>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-<%%= chat(identity: current_user.email, email: current_user.email, display_name: current_user.name) %>
-      </code>
+      <code class="language-ruby" data-lang="ruby"><%%= chat(identity: current_user.email, email: current_user.email, display_name: current_user.name) %></code>
     </pre>
   </figure>
 </div>

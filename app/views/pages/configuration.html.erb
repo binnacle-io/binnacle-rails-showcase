@@ -19,8 +19,7 @@
 
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-gem 'binnacle', '~> 0.4.7'
+      <code class="language-ruby" data-lang="ruby">gem 'binnacle', '~> 0.4.7'
 gem 'binnacle_chat', '~> 0.0.8'
 gem 'binnacle_ar', '~> 0.0.2'
 
@@ -30,8 +29,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-gravatarjs', '~> 1.0.0'
   gem 'rails-assets-remarkable-bootstrap-notify', '~> 3.1.3'
   gem 'rails-assets-highcharts', '~> 4.2.3'
-end
-      </code>
+end</code>
     </pre>
   </figure>
 
@@ -47,15 +45,13 @@ end
 
     <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-source 'https://rails-assets.org' do
+      <code class="language-ruby" data-lang="ruby">source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ui', '~> 1.11.3'
   gem 'rails-assets-jspanel', '~> 2.6.1'
   gem 'rails-assets-gravatarjs', '~> 1.0.0'
   gem 'rails-assets-remarkable-bootstrap-notify', '~> 3.1.3'
   gem 'rails-assets-highcharts', '~> 4.2.3'
-end
-      </code>
+end</code>
     </pre>
   </figure>
 </div>
@@ -70,20 +66,9 @@ end
     If you want to run the application locally you would need to configure the values below.
     We recommend using a .env file via <strong><a href="https://github.com/bkeepers/dotenv" target="blank">dotenv-rails</a></strong> (already in the Gemfile).
   </p>
-  <p>
-    The values for <code>BINNACLE_CHAT_CHANNEL</code> and <code>BINNACLE_AR_CHANNEL</code> can be set to the same
-    channel id or you can create extra channels for each of the widgets.
-  </p>
-  <p>
-    The values for <code>BINNACLE_ACCT_ID</code>, <code>BINNACLE_APP_ID</code>, <code>BINNACLE_APP_LOG_CHANNEL_ID</code> and <code>BINNACLE_APP_ERR_CHANNEL_ID</code>
-    are used for convenience to generate links to navigate back to <a href="https://binnacle.io" target="blank">binnacle.io</a>. Their values are the integer numbers you'll see
-    at the end URLs in binnacle.io such as <code>/accounts/8/apps/16</code> (where <code>8</code> is <code>BINNACLE_ACCT_ID</code> and 16 is <code>BINNACLE_APP_ID</code>).
-    <strong>They are not critical for the functioning of the Showcase app.</strong>
-  </p>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-BINNACLE_ENDPOINT=api1.binnacle-api.io # pick from api1..api6
+      <code class="language-ruby" data-lang="ruby">BINNACLE_ENDPOINT=api1.binnacle-api.io # pick from api1..api6
 BINNACLE_APP=...
 BINNACLE_API_KEY=...
 BINNACLE_API_SECRET=...
@@ -91,30 +76,51 @@ BINNACLE_APP_LOG_CHANNEL=...
 BINNACLE_APP_ERR_CHANNEL=...
 BINNACLE_CHAT_CHANNEL=...
 BINNACLE_AR_CHANNEL=...
+BINNACLE_VOTING_CHANNEL=...
+BINNACLE_WP_CHANNEL=...
 BINNACLE_ACCT_ID=...
 BINNACLE_APP_ID=...
 BINNACLE_APP_LOG_CHANNEL_ID=...
 BINNACLE_APP_ERR_CHANNEL_ID=...
-      </code>
+BINNACLE_FIREBASE_API_KEY=...
+BINNACLE_FIREBASE_MESSAGING_SENDER_ID=...</code>
     </pre>
   </figure>
+  <p>
+    In this demo we use several Binnacle Channels in the Demo Sections:
+  </p>
+  <ul>
+    <li><strong>Web Push</strong>: The <code>BINNACLE_WP_CHANNEL</code> is used to send signals that will trigger a web push notification from Binnacle.</li>
+    <li><strong>Ways to Signal:</strong>: The <code>BINNACLE_APP_LOG_CHANNEL</code> and <code>BINNACLE_APP_ERR_CHANNEL</code> are used
+    for automatically generated signals coming from Ruby/Rails Logging and Exception Trapping.</li>
+    <li><strong>Realtime:</strong> The <code>BINNACLE_VOTING_CHANNEL</code> is used in the "Realtime" section to record votes from users.</li>
+    <li><strong>Widgets:</strong> The <code>BINNACLE_CHAT_CHANNEL</code> and <code>BINNACLE_AR_CHANNEL</code> are use in the "Widgets" section to demo the 
+    <strong><a href="https://github.com/binnacle-io/binnacle_chat" target="blank">binnacle_chat</a></strong> and
+    <strong><a href="https://github.com/binnacle-io/binnacle_ar" target="blank">binnacle_ar</a></strong> widgets.
+    They both can be set to the same channel id or you can create extra channels for each of the widgets.</li>
+  </ul>
+    
+  <p>
+    The values for <code>BINNACLE_ACCT_ID</code>, <code>BINNACLE_APP_ID</code>, <code>BINNACLE_APP_LOG_CHANNEL_ID</code> and <code>BINNACLE_APP_ERR_CHANNEL_ID</code>
+    are used for convenience to generate links to navigate back to <a href="https://binnacle.io" target="blank">binnacle.io</a>. Their values are the integer numbers you'll see
+    at the end URLs in binnacle.io such as <code>/accounts/8/apps/16</code> (where <code>8</code> is <code>BINNACLE_ACCT_ID</code> and 16 is <code>BINNACLE_APP_ID</code>).
+    <strong>They are not critical for the functioning of the Showcase app.</strong>
+  </p>
 </div>
 
 <div class="bs-callout bs-callout-info">
   <h4>Binnacle Initializer</h4>
   <p>
     The Binnacle Initializer can be created using the Rails Generator (<code>rails generate binnacle</code>). The generator creates a
-    file under config/initializers/binnacle.rb. Although you can configure all aspects of the binnacle client via this initializer we
-    recommend that you configure any credentials and account/app/channel ids via Environment variables
+    file under <code>config/initializers/binnacle.rb</code>. Although you can configure all aspects of the binnacle client via this initializer we
+    recommend that you configure any credentials and account/app/channel ids via Environment variables.
   </p>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-Binnacle.configure do |config|
+      <code class="language-ruby" data-lang="ruby">Binnacle.configure do |config|
   config.intercept_rails_logging = true
   config.report_exceptions = true
-end
-      </code>
+end</code>
     </pre>
   </figure>
   <p>
@@ -122,9 +128,7 @@ end
   </p>
   <figure class="highlight">
     <pre>
-      <code class="language-ruby" data-lang="ruby">
-Binnacle.configure
-      </code>
+      <code class="language-ruby" data-lang="ruby">Binnacle.configure</code>
     </pre>
   </figure>
 </div>
