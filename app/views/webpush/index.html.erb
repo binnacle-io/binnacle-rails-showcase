@@ -9,13 +9,39 @@
     <a href="https://developer.mozilla.org/en-US/docs/Web/API/notification" target="blank">Notifications</a> to keep your users engaged even when they're not
     currently using your application.
   </p>
+  <p>
+  To subscribe to receive browser-native web pushes we use the Binnacle <code>WebPushClient</code> from a 
+  Javascript/Coffeescript file as shown below:
+  </p>
+    <figure class="highlight">
+    <pre>
+      <code class="language-ruby" data-lang="ruby">webpushClient = new (Binnacle.WebPushClient)(
+  channelId: '<%%= ENV["BINNACLE_WP_CHANNEL"] %>'
+  endPoint: '<%%= Binnacle.configuration.url %>'
+  apiKey: '<%%= ENV["BINNACLE_API_KEY"] %>'
+  apiSecret: '<%%= ENV["BINNACLE_API_SECRET"] %>'
+  firebaseApiKey: '<%%= ENV["BINNACLE_FIREBASE_API_KEY"] %>'
+  firebaseMessagingSenderId: '<%%= ENV["BINNACLE_FIREBASE_MESSAGING_SENDER_ID"] %>'
+  userIdentifier: gon.user_email
+  onMessage: onMessage
+)
+webpushClient.subscribe()</code>
+    </pre>
+  </figure>
+  <p>
+  The snippet above is similar to what is running on this page. As you can see there is a message 
+  handler attached to the <code>onMessage</code> property of the client. Also notice that we are 
+  passing a user identifier (using the Gon gem) so that we can target specific messages to this user (without it you'll
+  broadcast to all of your subscribers on the channel).
+  </p>
+
     <div class="zero-clipboard"><%= button_to "Try it!", webpush_trigger_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %></div>
   <figure class="highlight">
     <pre>
       <code class="language-ruby" data-lang="ruby">def trigger
   client = Binnacle::Client.new(ENV['BINNACLE_API_KEY'], ENV['BINNACLE_API_SECRET'])
   client.signal_asynch(ENV['BINNACLE_WP_CHANNEL'], 'push_one',
-                                              current_user.id,
+                                              current_user.email,
                                               '',
                                               'INFO',
                                               [],
@@ -28,6 +54,10 @@ end</code>
   The code sample above is run when you click the <strong>"Try It!"</strong> button on the right. It uses the Binnacle client to send 
   a signal to Binnacle. The signal produces an event named <code>push_one</code> with a JSON payload of 
   <code>{ "user": "[CURRENT_USER_NAME]" }</code>, where <code>CURRENT_USER_NAME</code> is the value of the currently logged-in user.
+  </p>
+  <p>
+  Also notice that we pass as the <code>client_id</code> parameter of the signal, the current user's email. 
+  By passing this value we tell Binnacle to only send a web push to any subscriptions under that email.
   </p>
   <p>In <strong>binnacle.io</strong> a previously configured <strong>Routing Rule</strong> is activated by the <code>push_one</code> event.
   <br><br>

@@ -45,7 +45,7 @@ $(document).ready ->
       apiSecret: '<%= ENV["BINNACLE_API_SECRET"] %>'
       firebaseApiKey: '<%= ENV["BINNACLE_FIREBASE_API_KEY"] %>'
       firebaseMessagingSenderId: '<%= ENV["BINNACLE_FIREBASE_MESSAGING_SENDER_ID"] %>'
-      userIdentifier: 'me'
+      userIdentifier: gon.user_email
       onMessage: onMessage
       onTokenRefresh: tokenRefresh
       onBeforePermissionRequest: beforePermissionRequest

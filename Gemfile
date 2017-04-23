@@ -32,9 +32,10 @@ gem 'high_voltage', '~> 3.0.0'
 gem 'okcomputer', '~> 1.14.1'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'chartkick', '~> 2.2.3', '>= 1.4.1'
+gem 'gon', '~> 6.1'
 
 # binnacle ruby driver
-gem 'binnacle', '~> 0.4.7'
+gem 'binnacle', '~> 0.4.8'
 gem 'binnacle_chat', '~> 0.0.8'
 gem 'binnacle_ar', '~> 0.0.2'
 
