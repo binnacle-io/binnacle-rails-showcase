@@ -5,23 +5,77 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Binnacle Sample App</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
   <%= Gon::Base.render_data %>
 
   <!-- google font libraries -->
-  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'>
-  <link href='//fonts.googleapis.com/css?family=Dosis:300,400,500,600,700' rel='stylesheet' type='text/css'>
-  <link href='//fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
-  <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Inconsolata' rel="stylesheet">
 
   <%= yield :binnacle_chat %>
   <%= javascript_include_tag 'highcharts', 'chartkick' %>
   <link rel="manifest" href="/manifest.json" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="<%= asset_path 'favicon.ico' %>">
 </head>
 <body role="document" class="binnacle <%= "#{params[:controller]}_#{params[:action]}" %>">
+  <header class="navbar-fixed-top">
+		<div class="container">
+			<div class="row flex-center">
+				<div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-0 col-xs-5">
+					<a href="/" class="logo flex-center">
+						<%= image_tag('logo.svg', class: "img-responsive") %>
+            <span>Showcase</span>
+					</a>
+				</div>
+        <div class="col-md-7 text-right">
+          <ul class="list-unstyled list-inline">
+            <li class="dropdown">
+              <a href="#" class="<%= 'active' if current_page?(webpush_path) || current_page?(page_path('configuration')) %> dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Getting Started <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="<%= 'active' if current_page?(home_path) %>"><%= link_to( 'Welcome', home_path) %></li>
+                <li class="<%= 'active' if current_page?(page_path('configuration')) %>"><%= link_to 'Configuration', page_path('configuration') %></li>
+              </ul>
+            </li> <!-- /dropdown -->
+            <%- if user_signed_in? %>
+            <!--li class="<%= 'active' if current_page?(page_path('configuration')) %>"><%= link_to 'Configuration', page_path('configuration') %></li -->
+            <li class="<%= 'active' if current_page?(webpush_path) %>"><%= link_to('Web Push', webpush_path) %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ways to Signal <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="<%= 'active' if current_page?(logging_path) %>"><%= link_to('Log to Signal', logging_path) %></li>
+                <li class="<%= 'active' if current_page?(exceptions_path) %>"><%= link_to('Exeption to Signal', exceptions_path) %></li>
+              </ul>
+            </li>
+            <li class="<%= 'active' if current_page?(candidates_path) %>"><%= link_to 'Realtime', candidates_path %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Widgets <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to('AR Cud', arcud_path) %></li>
+                <li><%= link_to('Chat Widget', chat_path) %></li>
+                <!-- li><%#= link_to('Notifications', notifications_path) %></li -->
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to('Sign Out', destroy_user_session_path, method: :delete) %></li>
+              </ul>
+            </li>
+            <% else %>
+            <li><%= link_to('Sign Up', new_user_registration_path) %></li>
+            <li><%= link_to('Log In', new_user_session_path) %></li>
+            <% end %>
+          </ul>
+        </div>
+			</div> <!-- /row -->
+		</div>
+	</header>
   <!-- Fixed navbar -->
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <!-- <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -31,8 +85,8 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to('Binnacle Showcase', home_path, class: 'navbar-brand') %>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
+      </div> -->
+      <!-- <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="<%= 'active' if current_page?(webpush_path) || current_page?(page_path('configuration')) %> dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Getting Started <span class="caret"></span></a>
@@ -42,9 +96,9 @@
             </ul>
           </li>
 
-          <%- if user_signed_in? %>
+          <%- if user_signed_in? %> -->
           <!--li class="<%= 'active' if current_page?(page_path('configuration')) %>"><%= link_to 'Configuration', page_path('configuration') %></li -->
-          <li class="<%= 'active' if current_page?(webpush_path) %>"><%= link_to('Web Push', webpush_path) %></li>
+          <!-- <li class="<%= 'active' if current_page?(webpush_path) %>"><%= link_to('Web Push', webpush_path) %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ways to Signal <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -57,9 +111,9 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Widgets <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><%= link_to('AR Cud', arcud_path) %></li>
-              <li><%= link_to('Chat Widget', chat_path) %></li>
+              <li><%= link_to('Chat Widget', chat_path) %></li> -->
               <!-- li><%#= link_to('Notifications', notifications_path) %></li -->
-            </ul>
+            <!-- </ul>
           </li>
           <% end %>
         </ul>
@@ -75,14 +129,12 @@
           <li><%= link_to('Sign In', new_user_session_path) %></li>
           <li><%= link_to('Sign Up', new_user_registration_path) %></li>
           <% end %>
-        </ul>
-      </div><!--/.nav-collapse -->
+        </ul> -->
+      <!-- </div>
     </div>
-  </nav>
+  </nav> -->
 
-  <div class="container" role="main">
-    <%= yield %>
-  </div> <!-- /container -->
+  <%= yield %>
 
   <!-- Bootstrap core JavaScript
   ================================================== -->
