@@ -33,7 +33,7 @@ webpushClient.subscribe()</code></pre>
           <div class="zero-clipboard" style="margin-left:30px;">
             <%= button_to "Try it!", webpush_trigger_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %>
           </div>
-<pre><code class="language-ruby" data-lang="ruby">def trigger
+<pre class="prettyprint">def trigger
   client = Binnacle::Client.new(ENV['BINNACLE_API_KEY'], ENV['BINNACLE_API_SECRET'])
   client.signal_asynch(ENV['BINNACLE_WP_CHANNEL'], 'push_one',
                                                     current_user.email,
@@ -41,7 +41,7 @@ webpushClient.subscribe()</code></pre>
                                                     'INFO',
                                                     [],
                                                     { user: current_user.name })
-end</code></pre>
+end</pre>
         </figure>
         <p>The code sample above is run when you click the <strong>"Try It!"</strong> button on the right. It uses the Binnacle client to send a signal to Binnacle. The signal produces an event named <code>push_one</code> with a JSON payload of <code>{ "user": "[CURRENT_USER_NAME]" }</code>, where <code>CURRENT_USER_NAME</code> is the value of the currently logged-in user.</p>
         <p>Also notice that we pass as the <code>client_id</code> parameter of the signal, the current user's email. By passing this value we tell Binnacle to only send a web push to any subscriptions under that email.</p>
