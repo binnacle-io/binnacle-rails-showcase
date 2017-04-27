@@ -1,8 +1,8 @@
 <section class="intro">
   <div class="container">
     <div class="row text-center">
-      <div class="col-md-10 col-md-offset-1">
-        <%= image_tag('lightning.svg', class: "img-responsive") %>
+      <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+        <%= image_tag('exception-signal.svg', class: "img-responsive") %>
         <h1>Exception to Signal</h1>
       </div>
     </div> <!-- /row -->
@@ -33,7 +33,7 @@
           <div class="zero-clipboard">
             <%= button_to "Try it!", trigger_exception_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger an exception and watch them reported on binnacle.io"} %>
           </div>
-<pre><code class="language-ruby" data-lang="ruby">def trigger
+<pre class="prettyprint">def trigger
   random_choice = 1 + rand(10)
   case random_choice
   when 1
@@ -58,7 +58,7 @@
     h = {}
     h.fetch("baz") #=> KeyError: key not found: "baz"
   end
-end</code></pre>
+end</pre>
         </figure>
       </div>
     </div> <!-- /row -->

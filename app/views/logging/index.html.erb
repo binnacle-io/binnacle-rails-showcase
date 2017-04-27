@@ -1,8 +1,8 @@
 <section class="intro">
   <div class="container">
     <div class="row text-center">
-      <div class="col-md-10 col-md-offset-1">
-        <%= image_tag('web-push-icon.svg', class: "img-responsive") %>
+      <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+        <%= image_tag('log-signal.svg', class: "img-responsive") %>
         <h1>Log to Signal</h1>
       </div>
     </div> <!-- /row -->
@@ -38,7 +38,7 @@
           <div class="zero-clipboard">
             <%= button_to "Try it!", logging_info_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %>
           </div>
-<pre><code class="language-ruby" data-lang="ruby">Binnacle.logger.info("This is an info message")</code></pre>
+<pre class="prettyprint">Binnacle.logger.info("This is an info message")</pre>
         </figure>
         <h2>Log Levels</h2>
         <p>Set the logger's level with <code class="language-ruby" data-lang="ruby">Binnacle.logger.level = Logger::DEBUG</code>:</p>
@@ -46,8 +46,8 @@
           <div class="zero-clipboard">
             <%= button_to "Try it!", logging_debug_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %>
           </div>
-<pre><code class="language-ruby" data-lang="ruby">Binnacle.logger.level = Logger::DEBUG
-Binnacle.logger.debug("This is an debug message")</code></pre>
+<pre class="prettyprint">Binnacle.logger.level = Logger::DEBUG
+Binnacle.logger.debug("This is an debug message")</pre>
         </figure>
         <h2>Using Progname</h2>
         <p>Use the progname attribute to change the name of the event being logged.</p>
@@ -57,8 +57,8 @@ Binnacle.logger.debug("This is an debug message")</code></pre>
           <div class="zero-clipboard">
             <%= button_to "Try it!", logging_with_procname_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %>
           </div>
-<pre><code class="language-ruby" data-lang="ruby">Binnacle.logger.level = Logger::ERROR
-Binnacle.logger.error('comm_error') { "Can't reach the service endpoint!" }</code></pre>
+<pre class="prettyprint">Binnacle.logger.level = Logger::ERROR
+Binnacle.logger.error('comm_error') { "Can't reach the service endpoint!" }</pre>
         </figure>
         <h2>Using Progname Hash</h2>
         <p>Passing a Hash as the progname parameter you can then specify a Binnacle's signal remaining parameters (session_id, event_name, client_id, tags):</p>
@@ -66,9 +66,9 @@ Binnacle.logger.error('comm_error') { "Can't reach the service endpoint!" }</cod
           <div class="zero-clipboard">
             <%= button_to "Try it!", logging_with_procname_hash_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %>
           </div>
-<pre><code class="language-ruby" data-lang="ruby">Binnacle.logger.info(channel_id: '<%= ENV['BINNACLE_APP_LOG_CHANNEL'] %>', session_id: '8675309', event_name: 'failed_transfer') {
+<pre class="prettyprint">Binnacle.logger.info(channel_id: '<%= ENV['BINNACLE_APP_LOG_CHANNEL'] %>', session_id: '8675309', event_name: 'failed_transfer') {
   'transfer failed, bad RTN'
-}</code></pre>
+}</pre>
         </figure>
         <h2>Tagged Logging</h2>
         <p>Tagged Logging can be used to apply a tag to a set of logging statements:</p>
@@ -76,10 +76,10 @@ Binnacle.logger.error('comm_error') { "Can't reach the service endpoint!" }</cod
           <div class="zero-clipboard">
             <%= button_to "Try it!", logging_tagged_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %>
           </div>
-<pre><code class="language-ruby" data-lang="ruby">Binnacle.logger.tagged("cart") do
+<pre class="prettyprint">Binnacle.logger.tagged("cart") do
   Binnacle.logger.info "Adding Item 123"
   Binnacle.logger.info "Adding Item 234"
-end</code></pre>
+end</pre>
         </figure>
         <h2>Multiple Tags</h2>
         <p>You can pass multiple tags to a Tagged Logging statement:</p>
@@ -87,10 +87,10 @@ end</code></pre>
           <div class="zero-clipboard">
             <%= button_to "Try it!", logging_multi_tagged_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %>
           </div>
-<pre><code class="language-ruby" data-lang="ruby">Binnacle.logger.tagged("account", "payments") do
+<pre class="prettyprint">Binnacle.logger.tagged("account", "payments") do
   Binnacle.logger.info 'Added new credit card of type VISA'
   Binnacle.logger.info 'Remove Paypal account'
-end</code></pre>
+end</pre>
         </figure>
       </div>
     </div> <!-- /row -->

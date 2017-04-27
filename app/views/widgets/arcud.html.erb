@@ -1,8 +1,8 @@
 <section class="intro">
   <div class="container">
     <div class="row text-center">
-      <div class="col-md-10 col-md-offset-1">
-        <%= image_tag('lightning.svg', class: "img-responsive") %>
+      <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+        <%= image_tag('arcud.svg', class: "img-responsive") %>
         <h1>Active Record CUD</h1>
       </div>
     </div> <!-- /row -->
@@ -16,9 +16,9 @@
         <p>Adds ActiveRecord callbacks for create, update and delete that will signal Binnacle with the state of the object (to_json). Use in conjunction with the <a href="https://github.com/binnacle-io/binnacle-js" target="blank">binnacle-js library</a> create a rich near-realtime experience for your users.</p>
         <p>To enabled signals from an ActiveRecord model simply use the the <strong>binnacle_signal_on</strong> class method:</p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby">class Article < ActiveRecord::Base
+<pre class="prettyprint">class Article < ActiveRecord::Base
   binnacle_signal on: [:create, :update, :destroy]
-end</code></pre>
+end</pre>
         </figure>
         <p>To view the Coffeescript client-side implementation of this demo see the source file <a href="https://github.com/binnacle-io/binnacle-rails-showcase/blob/master/app/assets/javascripts/articles.coffee.erb" target="blank">articles.coffee.erb</a></p>
         <%= render 'articles/articles' %>

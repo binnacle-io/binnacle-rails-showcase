@@ -3,6 +3,7 @@ code {
 }
 pre {
   background-color: lighten($dark-color, 5%);
+  font-family: 'Inconsolata', sans-serif;
   color: $white;
   font-size: 16px;
   margin-bottom: 16px;
@@ -32,5 +33,14 @@ figure {
       background: saturate($green, 20%);
       color: $dark-color;
     }
+  }
+}
+//Mobile sizes
+@media screen
+and (min-width: 320px)
+and (max-width: 739px) {
+  pre {
+    padding: 16px;
+    font-size: 14px;
   }
 }

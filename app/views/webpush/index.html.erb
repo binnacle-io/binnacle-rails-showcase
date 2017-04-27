@@ -1,7 +1,7 @@
 <section class="intro">
   <div class="container">
     <div class="row text-center">
-      <div class="col-md-10 col-md-offset-1">
+      <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
         <%= image_tag('web-push-icon.svg', class: "img-responsive") %>
         <h1>Web Push Notifications</h1>
       </div>
@@ -16,7 +16,7 @@
         <p>Binnacle can be used create, manage and send browser-native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Push_API" target="blank">Web Push</a> <a href="https://developer.mozilla.org/en-US/docs/Web/API/notification" target="blank">Notifications</a> to keep your users engaged even when they're not currently using your application.</p>
         <p>To subscribe to receive browser-native web pushes we use the Binnacle <code>WebPushClient</code> from a Javascript/Coffeescript file as shown below:</p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby">webpushClient = new (Binnacle.WebPushClient)(
+<pre class="prettyprint">webpushClient = new (Binnacle.WebPushClient)(
   channelId: '<%%= ENV["BINNACLE_WP_CHANNEL"] %>'
   endPoint: '<%%= Binnacle.configuration.url %>'
   apiKey: '<%%= ENV["BINNACLE_API_KEY"] %>'
@@ -26,7 +26,7 @@
   userIdentifier: gon.user_email
   onMessage: onMessage
 )
-webpushClient.subscribe()</code></pre>
+webpushClient.subscribe()</pre>
         </figure>
         <p>The snippet above is similar to what is running on this page. As you can see there is a message handler attached to the <code>onMessage</code> property of the client. Also notice that we are passing a user identifier (using the Gon gem) so that we can target specific messages to this user (without it you'll broadcast to all of your subscribers on the channel).</p>
         <figure class="highlight">

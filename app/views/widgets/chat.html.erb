@@ -1,8 +1,8 @@
 <section class="intro">
   <div class="container">
     <div class="row text-center">
-      <div class="col-md-10 col-md-offset-1">
-        <%= image_tag('lightning.svg', class: "img-responsive") %>
+      <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+        <%= image_tag('chat.svg', class: "img-responsive") %>
         <h1>Chat Widget</h1>
       </div>
     </div> <!-- /row -->
@@ -16,7 +16,7 @@
         <p>The Binnacle Chat Widget for Rails is a simple plugin that provides a Rails View Helper which gives you a floating chat window powered by Binnacle.</p>
         <p>To test the chat widget, launch the application on another browser, create another user and start chatting!</p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby"><%%= chat(identity: current_user.email, email: current_user.email, display_name: current_user.name) %></code></pre>
+<pre class="prettyprint"><%%= chat(identity: current_user.email, email: current_user.email, display_name: current_user.name) %></pre>
         </figure>
       </div>
     </div> <!-- /row -->

@@ -25,13 +25,19 @@
   <header class="navbar-fixed-top">
 		<div class="container">
 			<div class="row flex-center">
-				<div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-0 col-xs-5">
-					<a href="/" class="logo flex-center">
-						<%= image_tag('logo.svg', class: "img-responsive") %>
+        <div class="col-md-3 col-md-offset-1 col-sm-5 col-xs-8">
+  				<a href="/" class="logo flex-center">
+  					<%= image_tag('logo.svg', class: "img-responsive") %>
             <span>Showcase</span>
-					</a>
-				</div>
-        <div class="col-md-7 text-right">
+  				</a>
+        </div>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse text-right navbar-nav" id="nav">
           <ul class="list-unstyled list-inline">
             <li class="dropdown">
               <a href="#" class="<%= 'active' if current_page?(webpush_path) || current_page?(page_path('configuration')) %> dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Getting Started <span class="caret"></span></a>
@@ -71,8 +77,8 @@
             <% end %>
           </ul>
         </div>
-			</div> <!-- /row -->
-		</div>
+      </div> <!-- /row -->
+		</div> <!-- /container -->
 	</header>
   <!-- Fixed navbar -->
   <!-- <nav class="navbar navbar-inverse navbar-fixed-top">

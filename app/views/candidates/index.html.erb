@@ -1,7 +1,7 @@
 <section class="intro">
   <div class="container">
     <div class="row text-center">
-      <div class="col-md-10 col-md-offset-1">
+      <div class="col-md-10 col-md-offset-1 col-xs-8 col-xs-offset-2">
         <%= image_tag('lightning.svg', class: "img-responsive") %>
         <h1>Realtime Rails</h1>
       </div>
@@ -20,7 +20,7 @@
         <div class="btn-group" role="group">
           <% @candidates.each do |candidate| %>
             <%= link_to(candidate.name, vote_candidate_path(candidate),
-                        remote: true, method: :put, class: "btn btn-default") %>
+                        remote: true, method: :put, class: "btn") %>
           <% end %>
           <%= link_to("Reset my votes", reset_votes_for_candidates_path,
                     remote: true, method: :put, class: "btn btn-warning") %>
@@ -29,60 +29,60 @@
         <h3>Dependencies</h3>
         <p>We add the acts_as_votable and chartkick Gems as well as the client side assets <a href="http://bootstrap-notify.remabledesigns.com/" target="blank"><strong>bootstrap-notify</strong></a> (to provide feedback upon voting) and <a href="http://www.highcharts.com/" target="blank"><strong>highcharts</strong></a> (a requirement for chartkick).</p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby">gem 'acts_as_votable', '~> 0.10.0'
+<pre class="prettyprint">gem 'acts_as_votable', '~> 0.10.0'
 gem 'chartkick', '~> 1.4', '>= 1.4.1'
 
 # client-side assets
 source 'https://rails-assets.org' do
   gem 'rails-assets-remarkable-bootstrap-notify', '~> 3.1.3'
   gem 'rails-assets-highcharts', '~> 4.2.3'
-end</code></pre>
+end</pre>
         </figure>
         <p>For the bootstrap notify Javascript assets add a require directive in <code>app/assets/javascripts/application.js</code>:</p>
         <figure class="highlight">
-<pre><code class="language-javascript" data-lang="javascript">//= require remarkable-bootstrap-notify</code></pre>
+<pre class="prettyprint">//= require remarkable-bootstrap-notify</pre>
         </figure>
         <p>The highcharts and chartkick JS assets need to be included in the HEAD section of the main application layout (all other assets are included at the bottom of the page):</p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby">...
+<pre class="prettyprint">...
 <%%= javascript_include_tag 'highcharts', 'chartkick' %>
-&lt;/head&gt;</code></pre>
+&lt;/head&gt;</pre>
         </figure>
         <p>You might also need to precompile the highcharts.js asset in <code>config/initializers/assets.rb</code>:<p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby">Rails.application.config.assets.precompile += %w( highcharts.js )</code></pre>
+<pre class="prettyprint">Rails.application.config.assets.precompile += %w( highcharts.js )</pre>
         </figure>
         <h2>Acts As Votable Setup</h2>
         <p>Acts As Votable requires that we run a migration and decorate the involved models.</p>
         <figure class="highlight">
-<pre><code class="language-bash" data-lang="bash">rails generate acts_as_votable:migration</code></pre>
+<pre class="prettyprint">rails generate acts_as_votable:migration</pre>
         </figure>
         <p>The model to be voted on is Candidate. Generate the model using:</p>
         <figure class="highlight">
-<pre><code class="language-bash" data-lang="bash">rails generate model candidate name --no-fixture --no-test-framework</code></pre>
+<pre class="prettyprint">rails generate model candidate name --no-fixture --no-test-framework</pre>
         </figure>
         <p>With the database migrations in place we can migrate with <code>rake db:migrate</code>. Now we can
           decorate the models accordingly, starting with the User model which will serve as the voter:</p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby">class User < ActiveRecord::Base
+<pre class="prettyprint">class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessor :login
 
   acts_as_voter
-end</code></pre>
+end</pre>
         </figure>
         <p>And the Candidate model which Users will vote on:</p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby">class Candidate < ActiveRecord::Base
+<pre class="prettyprint">class Candidate < ActiveRecord::Base
   acts_as_votable
-end</code></pre>
+end</pre>
         </figure>
         <p>Let's also seed the database with a few Users and a few Candidates and make those
           users cast some votes so that we can see some data in <code>db/seeds.rb</code> (don't forger to run <code>rake db:seed</code>):</p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby">bernie = Candidate.find_or_create_by(name: 'Bernie Sanders')
+<pre class="prettyprint">bernie = Candidate.find_or_create_by(name: 'Bernie Sanders')
 hillary = Candidate.find_or_create_by(name: 'Hillary Clinton')
 ted = Candidate.find_or_create_by(name: 'Ted Cruz')
 donald = Candidate.find_or_create_by(name: 'Donald Trump')
@@ -107,12 +107,12 @@ slartibartfast.update({
 # Cast some votes
 bernie.liked_by arthur
 hillary.liked_by slartibartfast
-...</code></pre>
+...</pre>
         </figure>
         <h2>Candidates Controller</h2>
         <p>The candidates controller provides two actions; index and vote. Index will render a page with the pie chart (the page you are looking at now!) and the voting buttons. The vote action will receive a PUT HTTP request from the buttons to cast the vote for a candidate on behalf of the currently logged in user.</p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby">class CandidatesController < ApplicationController
+<pre class="prettyprint">class CandidatesController < ApplicationController
   respond_to :js, except: :index
 
   def index
@@ -128,7 +128,7 @@ hillary.liked_by slartibartfast
     client.signal_asynch(ENV['BINNACLE_VOTING_CHANNEL'], 'VOTES', current_user.id, '', 'INFO', [], votes)
   end
 
-end</code></pre>
+end</pre>
         </figure>
         <p>The index action simply returns the collection of all candidates, while the vote action applies
         a vote to a candidate and signals Binnacle with the current state of the voting (we send a hash of candidates names and the number of votes).</p>
@@ -144,36 +144,36 @@ end</code></pre>
         </ul>
         <p>The routes for the candidates in <code>config/routes.rb</code> add a GET route for the index action and a PUT for the votes:</p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby">resources :candidates, only: [:index] do
+<pre class="prettyprint">resources :candidates, only: [:index] do
   member do
     put :vote
   end
-end</code></pre>
+end</pre>
         </figure>
 
         <p>The <code>app/views/candidates/index.html.erb</code> page uses the pie_chart view helper to render the pie chart and for the voting buttons we look over the <code>@candidates</code> instance variable and create links for each candidate to the <code>vote_candidate_path</code>.</p>
         <figure class="highlight">
-<pre><code class="language-ruby" data-lang="ruby"><%%= pie_chart @candidates.map { |c| [c.name, c.votes_for.size] } %>
+<pre class="prettyprint lang-html"><%%= pie_chart @candidates.map { |c| [c.name, c.votes_for.size] } %>
 &lt;p&gt;Use your candidate's button to cast a vote:&lt;/p&gt;
 
 &lt;div class="btn-group" role="group"&gt
   <%% @candidates.each do |candidate| %>
     <%%= link_to(candidate.name, vote_candidate_path(candidate), remote: true, method: :put, class: "btn btn-default") %>
   <%% end %>
-&lt;/div&gt</code></pre>
+&lt;/div&gt</pre>
         </figure>
         <p>The Javascript response to the vote action in <code>app/views/candidates/vote.js.erb</code> uses the bootstrap notification library to let the user know we've received their vote:</p>
         <figure class="highlight">
-<pre><code class="language-js" data-lang="js">$.notify({
+<pre class="prettyprint lang-js">$.notify({
   icon: 'fa fa-check-circle',
   title: '<strong>You voted</strong>',
   message: 'Thanks for you vote!'
-})</code></pre>
+})</pre>
         </figure>
         <h2>Listening for Voting Updates</h2>
         <p>The listening for voting updates happens in the Coffeescript file <code>app/assets/javascripts/candidates.coffee</code>. At the top we check that the current page has the class <code>.candidates_index</code> so we only listen for Websocket/Comet broadcasts on the right page. We set this page identifier class on the application layout with <code>&lt;body role="document" class="binnacle <%%= "#{params[:controller]}_#{params[:action]}" %>"></code>:</p>
         <figure class="highlight">
-<pre><code class="language-javascript" data-lang="javascript">$(document).ready ->
+<pre class="prettyprint lang-js">$(document).ready ->
   if $('.candidates_index').length > 0
     votingUpdate = (event) ->
       new Chartkick.PieChart("chart-1", event.json)
@@ -188,7 +188,7 @@ end</code></pre>
       onSignal: votingUpdate
     )
 
-    client.subscribe()</code></pre>
+    client.subscribe()</pre>
         </figure>
         <p>At the bottom of the file we instantiate a Binnacle JS client passing the target channel we want to listen on for vote updates, the Binnacle endpoint and the publisher API key/secret</p>
         <p>In the controller we used the event name 'VOTES' so we will ignore any other events on that channel by using the <code>filterBy</code> and <code>filterByValue</code> configuration attributes.</p>
