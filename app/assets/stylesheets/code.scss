@@ -12,8 +12,8 @@ pre {
 }
 p, ul li {
   code {
-    color: $white;
-    background: lighten($dark-color, 5%);
+    color: $red;
+    background: darken($white, 7%);
     padding: 3px 10px;
     font-size: 14px;
   }
