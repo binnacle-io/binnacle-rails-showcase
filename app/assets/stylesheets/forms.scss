@@ -1,0 +1,18 @@
+.remember {
+  label {
+    font-weight: normal;
+  }
+}
+#error_explanation {
+  background: lighten($red, 35%);
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  h2 {
+    font-size: 16px;
+    margin-top: 0;
+  }
+  ul li {
+    font-size: 14px;
+  }
+}

@@ -164,6 +164,7 @@ GEM
       sprockets-rails (>= 2.0.0)
     rails-assets-bootstrap (3.3.7)
       rails-assets-jquery (>= 1.9.1, < 4)
+    rails-assets-google-code-prettify (1.0.5)
     rails-assets-gravatarjs (1.0.0)
     rails-assets-highcharts (4.2.7)
     rails-assets-jquery (3.2.1)
@@ -262,6 +263,7 @@ DEPENDENCIES
   pg
   puma (~> 3.0)
   rails (= 5.0.2)
+  rails-assets-google-code-prettify (~> 1.0.4)!
   rails-assets-gravatarjs (~> 1.0.0)!
   rails-assets-highcharts (~> 4.2.3)!
   rails-assets-jquery-ui (~> 1.11.3)!

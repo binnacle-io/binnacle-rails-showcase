@@ -1,0 +1,293 @@
+@import "mixins";
+
+body {
+  background: $white;
+  font-family: $body-font;
+}
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1170px;
+}
+h1, h2, h3 {
+  color: $dark-color;
+  font-family: $header-font;
+  letter-spacing: .5px;
+  padding: 0;
+}
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 20px;
+  border: none;
+}
+p, ul li {
+  line-height: 1.6;
+  font-size: 16px;
+  color: lighten($dark-color, 5%);
+}
+p {
+  margin-bottom: 16px;
+}
+ul li {
+  margin-bottom: 8px;
+}
+a {
+  color: $green;
+  &:hover, &:focus {
+    color: $blue;
+    text-decoration: none;
+  }
+}
+.btn {
+  border-radius: 25px;
+  padding: 8px 24px;
+  border: none;
+  font-family: $header-font;
+  color: $white;
+  background: $red;
+  font-size: 18px;
+  box-shadow: 3px 3px 0 rgba(214,99,99,0.4);
+  &:hover {
+    background: saturate($red, 10%);
+    color: $white;
+  }
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+.dropdown-menu {
+  background: lighten($dark-color, 5%);
+  > li > a, > .active > a {
+    color: $white;
+    background: transparent;
+  }
+  > li > a:hover, > li > a:focus, > .active > a:hover {
+    background: transparent;
+    color: $green;
+  }
+}
+header {
+  background: $dark-color;
+  padding: 8px 0;
+  .dropdown-menu {
+    .item {
+      padding: 5px 0;
+      font-size: 16px;
+    }
+  }
+  .navbar-collapse {
+    width: 58.33333333%;
+  }
+  ul {
+    margin-bottom: 0;
+    li {
+      padding: 0;
+      margin-bottom: 0;
+      text-align: center;
+    }
+    a {
+      color: $white;
+      padding: 0 8px;
+      font-size: 14px;
+      &:hover, &:focus {
+        color: $green;
+      }
+    }
+  }
+}
+.logo {
+  img {
+    width: 60%;
+  }
+  span {
+    font-family: $header-font;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: $white;
+    margin-left: 8px;
+    letter-spacing: 1px;
+  }
+}
+.intro {
+  background: $dark-color;
+  margin-top: 50px;
+  padding: 32px 0;
+  h1, p {
+    color: $white;
+  }
+  h1 {
+    margin-bottom: 24px;
+  }
+  .btn {
+    margin-top: 18px;
+  }
+  img {
+    width: 10%;
+    margin: 0 auto;
+  }
+}
+.content {
+  padding: 30px 0;
+  margin-bottom: 30px;
+  h2 {
+    margin-top: 48px;
+  }
+  .img-responsive {
+    margin-bottom: 16px;
+    border: 1px darken($white, 6%) solid;
+    padding: 80px;
+    background: darken($white, 3%);
+  }
+}
+.panel {
+  border-radius: 10px;
+}
+.panel-primary {
+  border-color: darken($white, 6%);
+}
+.panel-primary > .panel-heading {
+  background: $blue;
+  border: none;
+  border-radius: 10px 10px 0 0;
+}
+.icon-bar {
+  background: $white;
+}
+.navbar-toggle {
+  margin: 0;
+}
+
+//Mobile sizes
+@media screen
+and (min-width: 320px)
+and (max-width: 739px) {
+  h1 {
+    font-size: 20px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  p, ul li {
+    font-size: 14px;
+  }
+  header {
+    .flex-center {
+      display: block;
+    }
+    .logo {
+      &.flex-center {
+        display: flex;
+      }
+      img {
+        float: left;
+      }
+    }
+    .navbar-toggle {
+      padding: 5px 10px;
+    }
+    .navbar-collapse {
+      width: 100%;
+      background: lighten($dark-color, 5%);
+      margin: 0;
+      li {
+        display: block;
+        a {
+          padding: 8px;
+          display: block;
+          text-align: left;
+        }
+      }
+    }
+  }
+  .intro {
+    margin-top: 40px;
+    h1 {
+      margin-bottom: 8px;
+    }
+    img {
+      width: 20%;
+    }
+  }
+  .content {
+    h2 {
+      margin-top: 24px;
+    }
+  }
+  .content {
+    padding: 10px 0;
+  }
+  .btn-clipboard {
+    display: none;
+  }
+  .btn-group .btn {
+    border-radius: 25px !important;
+    margin: 5px 10px;
+  }
+  .widgets_chat {
+    .panel {
+      width: 100%;
+      left: 0 !important;
+      height: 200px !important;
+      .panel-body {
+        width: 100% !important;
+      }
+    }
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  header {
+    .flex-center {
+      display: block;
+    }
+    .logo {
+      &.flex-center {
+        display: flex;
+      }
+      img {
+        float: left;
+      }
+    }
+    .navbar-collapse {
+      width: 100%;
+      background: lighten($dark-color, 5%);
+      margin: 0;
+      li {
+        display: block;
+        a {
+          padding: 8px;
+          display: block;
+          text-align: left;
+        }
+      }
+    }
+    .navbar-collapse.collapse {
+      display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+      display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+      display:block !important;
+    }
+  }
+  .content {
+    h2 {
+      margin-top: 24px;
+    }
+  }
+  .btn-group {
+    .btn {
+      padding: 8px 20px;
+      font-size: 14px;
+    }
+  }
+}

@@ -1,35 +1,39 @@
-<div class="page-header">
-  <h1>Exception to Signal</h1>
-</div>
+<section class="intro">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+        <%= image_tag('exception-signal.svg', class: "img-responsive") %>
+        <h1>Exception to Signal</h1>
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</section> <!-- /intro -->
+<section class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <p>Binnacle can generate signal is response to exceptions thrown by your Rails application.</p>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Tail the Log</h3>
+          </div>
+          <div class="panel-body">
+            <p>You can view the error channel (<strong><%= ENV['BINNACLE_APP_ERR_CHANNEL'] %></strong>) where exceptions are summarized.</p>
 
-<p>
-  <p>Binnacle can generate signal is response to exceptions thrown by your Rails application.</p>
-</p>
-
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">Tail the Log</h3>
-  </div>
-  <div class="panel-body">
-    <p>
-    You can view the error channel (<strong><%= ENV['BINNACLE_APP_ERR_CHANNEL'] %></strong>) where exceptions are summarized.
-    </p>
-
-    <% if error_channel_log %>
-      <%= link_to(error_channel_log, class: 'btn btn-primary', target: 'blank') do %>
-        <i class="fa fa-external-link"></i> Open Errors View
-      <% end %>
-    <% end %>
-  </div>
-</div>
-
-<div class="bs-callout bs-callout-info">
-  <h4>Exception Trapping</h4>
-  <p>The code below triggers one of ten different exceptions, use the <strong>'Try it!'</strong> button to send a signal to Binnacle:</p>
-  <div class="zero-clipboard"><%= button_to "Try it!", trigger_exception_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger an exception and watch them reported on binnacle.io"} %></div>
-  <figure class="highlight">
-    <pre>
-      <code class="language-ruby" data-lang="ruby">def trigger
+          <% if error_channel_log %>
+            <%= link_to(error_channel_log, class: 'btn btn-primary', target: 'blank') do %>
+              <i class="fa fa-external-link"></i> Open Errors View
+            <% end %>
+          <% end %>
+          </div> <!-- /panel-body -->
+        </div> <!-- /panel -->
+        <h2>Exception Trapping</h2>
+        <p>The code below triggers one of ten different exceptions, use the <strong>'Try it!'</strong> button to send a signal to Binnacle:</p>
+        <figure class="highlight">
+          <div class="zero-clipboard">
+            <%= button_to "Try it!", trigger_exception_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger an exception and watch them reported on binnacle.io"} %>
+          </div>
+<pre class="prettyprint">def trigger
   random_choice = 1 + rand(10)
   case random_choice
   when 1
@@ -54,7 +58,9 @@
     h = {}
     h.fetch("baz") #=> KeyError: key not found: "baz"
   end
-end</code>
-    </pre>
-  </figure>
-</div>
+end</pre>
+        </figure>
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</section> <!-- /content -->

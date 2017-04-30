@@ -1,21 +1,22 @@
-<div class="page-header">
-  <h1>Web Push Notifications</h1>
-</div>
-
-<div class="bs-callout bs-callout-info">
-  <h4>Sending Browser-Native Web Push Notifications</h4>
-  <p>
-    Binnacle can be used create, manage and send browser-native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Push_API" target="blank">Web Push</a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/API/notification" target="blank">Notifications</a> to keep your users engaged even when they're not
-    currently using your application.
-  </p>
-  <p>
-  To subscribe to receive browser-native web pushes we use the Binnacle <code>WebPushClient</code> from a 
-  Javascript/Coffeescript file as shown below:
-  </p>
-    <figure class="highlight">
-    <pre>
-      <code class="language-ruby" data-lang="ruby">webpushClient = new (Binnacle.WebPushClient)(
+<section class="intro">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+        <%= image_tag('web-push-icon.svg', class: "img-responsive") %>
+        <h1>Web Push Notifications</h1>
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</section> <!-- /intro -->
+<section class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <h2>Sending Browser-Native Web Push Notifications</h2>
+        <p>Binnacle can be used create, manage and send browser-native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Push_API" target="blank">Web Push</a> <a href="https://developer.mozilla.org/en-US/docs/Web/API/notification" target="blank">Notifications</a> to keep your users engaged even when they're not currently using your application.</p>
+        <p>To subscribe to receive browser-native web pushes we use the Binnacle <code>WebPushClient</code> from a Javascript/Coffeescript file as shown below:</p>
+        <figure class="highlight">
+<pre class="prettyprint">webpushClient = new (Binnacle.WebPushClient)(
   channelId: '<%%= ENV["BINNACLE_WP_CHANNEL"] %>'
   endPoint: '<%%= Binnacle.configuration.url %>'
   apiKey: '<%%= ENV["BINNACLE_API_KEY"] %>'
@@ -25,63 +26,35 @@
   userIdentifier: gon.user_email
   onMessage: onMessage
 )
-webpushClient.subscribe()</code>
-    </pre>
-  </figure>
-  <p>
-  The snippet above is similar to what is running on this page. As you can see there is a message 
-  handler attached to the <code>onMessage</code> property of the client. Also notice that we are 
-  passing a user identifier (using the Gon gem) so that we can target specific messages to this user (without it you'll
-  broadcast to all of your subscribers on the channel).
-  </p>
-
-    <div class="zero-clipboard"><%= button_to "Try it!", webpush_trigger_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %></div>
-  <figure class="highlight">
-    <pre>
-      <code class="language-ruby" data-lang="ruby">def trigger
+webpushClient.subscribe()</pre>
+        </figure>
+        <p>The snippet above is similar to what is running on this page. As you can see there is a message handler attached to the <code>onMessage</code> property of the client. Also notice that we are passing a user identifier (using the Gon gem) so that we can target specific messages to this user (without it you'll broadcast to all of your subscribers on the channel).</p>
+        <figure class="highlight">
+          <div class="zero-clipboard" style="margin-left:30px;">
+            <%= button_to "Try it!", webpush_trigger_path, remote: true, class: "btn-clipboard", data: { container: "body", toggle: "popover", trigger: "hover", placement:"left", title: "Try it!", content: "Trigger the logging statements and watch them live on binnacle.io"} %>
+          </div>
+<pre class="prettyprint">def trigger
   client = Binnacle::Client.new(ENV['BINNACLE_API_KEY'], ENV['BINNACLE_API_SECRET'])
   client.signal_asynch(ENV['BINNACLE_WP_CHANNEL'], 'push_one',
-                                              current_user.email,
-                                              '',
-                                              'INFO',
-                                              [],
-                                              { user: current_user.name })
-end</code>
-    </pre>
-  </figure>
-
-  <p>
-  The code sample above is run when you click the <strong>"Try It!"</strong> button on the right. It uses the Binnacle client to send 
-  a signal to Binnacle. The signal produces an event named <code>push_one</code> with a JSON payload of 
-  <code>{ "user": "[CURRENT_USER_NAME]" }</code>, where <code>CURRENT_USER_NAME</code> is the value of the currently logged-in user.
-  </p>
-  <p>
-  Also notice that we pass as the <code>client_id</code> parameter of the signal, the current user's email. 
-  By passing this value we tell Binnacle to only send a web push to any subscriptions under that email.
-  </p>
-  <p>In <strong>binnacle.io</strong> a previously configured <strong>Routing Rule</strong> is activated by the <code>push_one</code> event.
-  <br><br>
-  <h4>The Power of Web Notification Templates and Routing Rules</h4>
-  <p>
-  Binnacle Routing Rules can trigger an action to be taken based on an incoming signal's' parameters (the event name in this case). 
-  One of the possible actions triggered by a signal is to send a Web Push Notification to subscribers. </p>
-  <p>Below is the sample routing rule used in this page example:</p>
-  <p>
-  <%= image_tag('web-notification-routing-rule.png', class: 'img-responsive dropshadow') %>
-  </p>
-  <br>
-  <h4>Web Notification Templates</h4>
-  <p>
-  You can create "Web Notification Templates" on binnacle.io. These templates determine the title, body, icon and URL of 
-  a Push Notification. Below is a screenshot of the notification template used for the example on this page.
-  </p>
-  <p>
-  <%= image_tag('web-notification-template.png', class: 'img-responsive dropshadow') %>
-  </p>    
-  <p>    
-  These two constructs together allow for maximum flexibility with minimal (typically zone) changes to your system.
-  </p>
-</div>
-
-
-
+                                                    current_user.email,
+                                                    '',
+                                                    'INFO',
+                                                    [],
+                                                    { user: current_user.name })
+end</pre>
+        </figure>
+        <p>The code sample above is run when you click the <strong>"Try It!"</strong> button on the right. It uses the Binnacle client to send a signal to Binnacle. The signal produces an event named <code>push_one</code> with a JSON payload of <code>{ "user": "[CURRENT_USER_NAME]" }</code>, where <code>CURRENT_USER_NAME</code> is the value of the currently logged-in user.</p>
+        <p>Also notice that we pass as the <code>client_id</code> parameter of the signal, the current user's email. By passing this value we tell Binnacle to only send a web push to any subscriptions under that email.</p>
+        <p>In <strong>binnacle.io</strong> a previously configured <strong>Routing Rule</strong> is activated by the <code>push_one</code> event.</p>
+        <h2>The Power of Web Notification Templates and Routing Rules</h2>
+        <p>Binnacle Routing Rules can trigger an action to be taken based on an incoming signal's' parameters (the event name in this case). One of the possible actions triggered by a signal is to send a Web Push Notification to subscribers.</p>
+        <p>Below is the sample routing rule used in this page example:</p>
+        <%= image_tag('web-notification-routing-rule.png', class: 'img-responsive') %>
+        <h2>Web Notification Templates</h2>
+        <p>You can create "Web Notification Templates" on binnacle.io. These templates determine the title, body, icon and URL of a Push Notification. Below is a screenshot of the notification template used for the example on this page.</p>
+        <%= image_tag('web-notification-template.png', class: 'img-responsive') %>
+        <p>These two constructs together allow for maximum flexibility with minimal (typically zone) changes to your system.</p>
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</section> <!-- /content -->

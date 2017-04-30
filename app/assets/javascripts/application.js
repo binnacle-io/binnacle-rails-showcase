@@ -16,4 +16,5 @@
 //= require binnacle_chat
 //= require js-routes
 //= require remarkable-bootstrap-notify
+//= require google-code-prettify
 //= require_tree .

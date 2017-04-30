@@ -46,6 +46,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-gravatarjs', '~> 1.0.0'
   gem 'rails-assets-remarkable-bootstrap-notify', '~> 3.1.3'
   gem 'rails-assets-highcharts', '~> 4.2.3'
+  gem 'rails-assets-google-code-prettify', '~> 1.0.4'
 end
 
 # log outgoing http requests

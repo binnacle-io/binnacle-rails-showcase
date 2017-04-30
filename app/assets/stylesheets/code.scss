@@ -1,0 +1,46 @@
+code {
+  font-family: 'Source Code Pro', monospace;
+}
+pre {
+  background-color: lighten($dark-color, 5%);
+  font-family: 'Source Code Pro', monospace;
+  color: $white;
+  font-size: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  padding: 24px;
+}
+p, ul li {
+  code {
+    color: $red;
+    background: darken($white, 7%);
+    padding: 3px 10px;
+    font-size: 14px;
+  }
+}
+figure {
+  position: relative;
+  .btn-clipboard {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: $green;
+    color: $dark-color;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 16px;
+    &:hover {
+      background: saturate($green, 20%);
+      color: $dark-color;
+    }
+  }
+}
+//Mobile sizes
+@media screen
+and (min-width: 320px)
+and (max-width: 739px) {
+  pre {
+    padding: 16px;
+    font-size: 14px;
+  }
+}
